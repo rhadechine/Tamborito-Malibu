@@ -1,0 +1,822 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply box-border; }
+  html { @apply scroll-smooth; }
+  body { @apply m-0 bg-bgSoft font-sans text-textBase leading-relaxed; }
+  img { @apply block max-w-full; }
+  a { @apply text-inherit no-underline; }
+  ul { @apply m-0 list-none p-0; }
+  h1, h2, h3, .page-title, .page-hero h1, .ecosystem-copy h1 { @apply font-display leading-[1.05]; }
+}
+
+@layer components {
+  .container { @apply mx-auto; width: min(1180px, calc(100% - 40px)); }
+  .app-shell { @apply min-h-screen bg-bgSoft; }
+  .center { @apply text-center; }
+  .center-text { @apply mx-auto; }
+  .max-text { @apply max-w-[720px]; }
+  .narrow { @apply max-w-[820px]; }
+  .section { @apply py-[90px]; }
+  .soft-bg { @apply bg-[#f2ede3]; }
+  .museo-soft { @apply bg-[#f3eadb]; }
+
+  .navbar { @apply sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-md; }
+  .museo-nav { @apply bg-[#fcf7ee]/95; }
+  .ecosystem-nav { @apply bg-[#fffaf2]/95; }
+  .nav-content { @apply flex min-h-[78px] items-center justify-between gap-6; }
+  .logo { @apply text-xl font-bold text-dark; }
+  .logo span { @apply text-accent; }
+  .museo-logo { @apply text-museoDark; }
+  .museo-logo span { @apply text-museoClay; }
+  .ecosystem-logo { @apply text-dark; }
+  .ecosystem-logo span { @apply text-[#b85e3d]; }
+  .nav-links { @apply flex items-center gap-6; }
+  .nav-links a { @apply font-semibold text-[#27312f] transition duration-200 hover:text-accent; }
+  .nav-links a.active:not(.nav-cta) { @apply text-accent; }
+  .museo .nav-links a.active:not(.nav-cta) { @apply text-museoClay; }
+  .ecosystem .nav-links a.active:not(.nav-cta) { @apply text-[#b85e3d]; }
+  .nav-cta { @apply rounded-full bg-accent px-[18px] py-3 text-white shadow-card hover:text-white; }
+  .menu-toggle { @apply hidden border-0 bg-transparent text-[1.7rem] leading-none cursor-pointer; }
+
+  .eyebrow, .section-tag { @apply mb-3.5 text-xs font-extrabold uppercase tracking-[0.16em] text-accent2; }
+  .museo-eyebrow, .museo-tag { @apply !text-museoClay; }
+  .section-tag.light { @apply text-[#f2cf93]; }
+
+  .hero, .ecosystem-hero, .page-hero { @apply relative flex items-center overflow-hidden; }
+  .hero { @apply min-h-[88vh]; }
+  .ecosystem-hero {
+    @apply min-h-[92vh] text-white;
+    background:
+      linear-gradient(135deg, rgba(13, 59, 54, .96) 0%, rgba(40, 64, 54, .88) 45%, rgba(108, 74, 47, .92) 100%),
+      url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=80') center/cover;
+  }
+  .ecosystem-grid { @apply grid grid-cols-2 items-center gap-10; }
+  .ecosystem-copy h1 { @apply mb-[18px] text-[clamp(3rem,6vw,5.4rem)]; }
+  .ecosystem-copy p { @apply max-w-[640px] text-white/90; }
+  .ecosystem-actions { @apply mt-[30px] flex flex-wrap gap-4; }
+
+  .portal-cards { @apply grid gap-[22px]; }
+  .portal-card { @apply relative block min-h-[260px] overflow-hidden rounded-[30px] p-8 text-white shadow-card transition duration-300 hover:-translate-y-1.5; }
+  .portal-card::before { @apply absolute inset-0 z-[1] content-['']; background: linear-gradient(135deg, rgba(0,0,0,.62), rgba(0,0,0,.24)); }
+  .portal-card > * { @apply relative z-[2]; }
+  .portal-card span { @apply text-xs font-extrabold uppercase tracking-[0.14em] text-[#f4d39a]; }
+  .portal-card h2 { @apply my-3.5 text-[clamp(2rem,4vw,2.7rem)]; }
+  .portal-card p { @apply text-white/90; }
+  .portal-fundacion { background: url('https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1200&q=80') center/cover; }
+  .portal-museo { background: url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=1200&q=80') center/cover; }
+
+  .ecosystem-intro { @apply bg-[#fffaf2]; }
+  .intro-copy { @apply text-[1.05rem] text-muted; }
+  .intro-copy p { @apply mb-4; }
+  .cards-grid.four { @apply grid-cols-4; }
+  .ecosystem-info-card { @apply min-h-[260px]; }
+  .card-icon { @apply mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#f6eee4] text-2xl text-[#b85e3d]; }
+
+  .ecosystem-paths { @apply bg-dark text-white; }
+  .path-grid { @apply grid grid-cols-2 gap-6; }
+  .path-card { @apply relative flex min-h-[430px] flex-col justify-between overflow-hidden rounded-[34px] p-9 shadow-card; }
+  .path-card::before { @apply absolute inset-0 z-[1] content-['']; background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.72)); }
+  .path-card > * { @apply relative z-[2]; }
+  .path-card h2 { @apply mb-4 text-[clamp(2.4rem,4vw,4rem)]; }
+  .path-card p { @apply max-w-[560px] text-white/85; }
+  .path-foundation { background: url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1300&q=80') center/cover; }
+  .path-museum { background: url('https://images.unsplash.com/photo-1594794312433-05a69a98b7a0?auto=format&fit=crop&w=1300&q=80') center/cover; }
+
+  .ecosystem-support { @apply bg-[#fffaf2]; }
+  .support-card { @apply grid grid-cols-[1fr_auto] items-center gap-8 rounded-[34px] bg-white p-10 shadow-card; }
+  .support-card h2 { @apply mb-4 text-[clamp(2.4rem,4vw,4rem)]; }
+  .support-card p { @apply max-w-[720px] text-muted; }
+  .support-actions { @apply flex flex-wrap gap-4; }
+
+  .hero-home { background: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=80') center/cover; }
+  .museo-hero { background: url('https://images.unsplash.com/photo-1594794312433-05a69a98b7a0?auto=format&fit=crop&w=1600&q=80') center/cover; }
+  .hero-overlay, .page-hero-overlay { @apply absolute inset-0; background: linear-gradient(90deg, rgba(8,22,19,.76), rgba(8,22,19,.36)); }
+  .museo-overlay { background: linear-gradient(90deg, rgba(47,36,29,.82), rgba(47,36,29,.38)); }
+  .hero-content, .page-hero-content { @apply relative z-[2] max-w-[760px] py-20 text-white; }
+  .hero h1 { @apply mb-[18px] text-[clamp(3rem,7vw,5.5rem)]; }
+  .hero-text { @apply text-[1.08rem] text-white/90; }
+  .hero-actions { @apply mt-[30px] flex flex-wrap gap-4; }
+  .btn { @apply inline-flex items-center justify-center rounded-full border-0 px-6 py-3.5 font-bold transition duration-300 hover:-translate-y-0.5; }
+  .btn-primary { @apply bg-accent text-white shadow-card; }
+  .btn-museo { @apply bg-museoClay text-white shadow-card; }
+  .btn-secondary { @apply border border-white/50 bg-white/10 text-white; }
+  .btn-light { @apply bg-white text-dark shadow-card; }
+  .btn-outline-dark { @apply border border-dark/20 bg-transparent text-dark hover:bg-dark hover:text-white; }
+
+  .split-grid { @apply grid grid-cols-[1.1fr_.9fr] items-start gap-[38px]; }
+  .split-text h2 { @apply mb-5 text-5xl; }
+  .split-text p { @apply mb-4 text-muted; }
+  .feature-stack { @apply grid gap-5; }
+  .feature-card, .info-card, .future-card, .value-block, .donation-info-card, .book-card, .artifact-card { @apply rounded-card border border-black/5 bg-white p-[30px] text-textBase shadow-card; }
+  .museo-card { @apply border-[#e5d2b8] bg-[#fffaf2]; }
+  .feature-card h3, .info-card h3, .future-card h3, .value-block h3 { @apply mb-2.5 text-[2rem]; }
+  .feature-card p, .info-card p, .future-card p, .value-block p { @apply text-muted; }
+  .dark-section { @apply bg-dark text-white; }
+  .dark-section .info-card { @apply border-white/10 bg-white/5 text-white; }
+  .dark-section .info-card p { @apply text-white/80; }
+  .section-heading { @apply mb-[34px]; }
+  .section-heading h2 { @apply text-5xl; }
+  .cards-grid { @apply grid gap-6; }
+  .cards-grid.three { @apply grid-cols-3; }
+  .card-number { @apply font-display text-5xl leading-none text-accent; }
+  .museo .card-number { @apply text-museoClay; }
+  .text-link { @apply mt-[18px] inline-block font-extrabold text-accent; }
+  .museo-link { @apply !text-museoClay; }
+
+  .page-hero { @apply min-h-[56vh]; }
+  .history-hero { background: url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1600&q=80') center/cover; }
+  .museo-history-hero { background: url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=1600&q=80') center/cover; }
+  .page-hero h1 { @apply mb-3.5 text-[clamp(3rem,6vw,5rem)]; }
+  .page-banner { @apply bg-bg pb-[50px] pt-[90px]; }
+  .museo-banner { background: linear-gradient(180deg, #eee3d2, #fffaf2); }
+  .page-title { @apply mb-3 text-[clamp(3rem,6vw,4.8rem)]; }
+  .lead { @apply text-[1.08rem] text-muted; }
+
+  .timeline-section { @apply pt-[30px]; }
+  .timeline-row { @apply mb-[50px] grid grid-cols-2 items-center gap-10; }
+  .timeline-row.reverse .timeline-media { @apply order-2; }
+  .timeline-media img { @apply h-[380px] w-full rounded-card object-cover shadow-card; }
+  .timeline-year { @apply mb-2.5 font-display text-[5rem] leading-none text-[#d7d1c9]; }
+  .timeline-year.accent { @apply text-accent; }
+  .museo-year { @apply text-[4rem] text-museoClay; }
+  .timeline-content h3 { @apply mb-3 text-[2.4rem]; }
+  .timeline-content p { @apply text-muted; }
+  .mission-grid { @apply grid grid-cols-3 gap-6; }
+
+  .dashboard-layout { @apply grid grid-cols-[280px_1fr] items-start gap-[26px]; }
+  .dashboard-sidebar, .dashboard-main, .form-info, .styled-form { @apply rounded-card bg-white p-7 shadow-card; }
+  .dashboard-sidebar { @apply sticky top-[100px]; }
+  .dashboard-sidebar h3 { @apply mb-4 text-[2rem]; }
+  .dashboard-sidebar ul { @apply grid gap-3; }
+  .dashboard-sidebar li { @apply rounded-[14px] bg-[#f6f2eb] px-4 py-3.5 font-semibold text-muted; }
+  .dashboard-sidebar li.active { @apply bg-dark text-white; }
+  .dashboard-top { @apply mb-7 flex items-center justify-between gap-4; }
+  .search-input, .library-search input, .styled-form input, .styled-form select, .styled-form textarea { @apply w-full rounded-2xl border border-line bg-white px-4 py-3.5 font-sans outline-none; }
+  .search-input { @apply max-w-[280px]; }
+  .course-grid { @apply grid grid-cols-3 gap-[22px]; }
+  .course-card { @apply overflow-hidden rounded-3xl border border-[#eee3d3] bg-white; }
+  .course-cover { @apply h-[190px] bg-cover bg-center; }
+  .cover-1 { background-image: url('https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1000&q=80'); }
+  .cover-2 { background-image: url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1000&q=80'); }
+  .cover-3 { background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=80'); }
+  .course-body { @apply p-[22px]; }
+  .course-category { @apply mb-2.5 inline-block text-xs font-extrabold uppercase tracking-[0.12em] text-accent; }
+  .course-body h3 { @apply mb-2.5 text-[2rem]; }
+  .course-body p { @apply mb-[18px] text-muted; }
+  .progress-meta { @apply mb-2.5 flex justify-between gap-3 text-sm text-muted; }
+  .progress-bar { @apply h-2.5 w-full overflow-hidden rounded-full bg-[#ece5da]; }
+  .progress-bar span { @apply block h-full rounded-full; background: linear-gradient(90deg, #d57a52, #cfa969); }
+
+  .library-head { @apply flex items-end justify-between gap-5; }
+  .library-search { @apply min-w-[320px]; }
+  .books-row { @apply mb-[38px]; }
+  .featured-book { @apply grid grid-cols-[280px_1fr] items-center gap-7 rounded-[30px] bg-white p-7 shadow-card; }
+  .featured-book-cover { @apply min-h-[380px] rounded-card; background: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80') center/cover; }
+  .book-badge { @apply mb-3 inline-block rounded-full bg-[#f6eee4] px-3.5 py-2 text-sm font-extrabold text-accent; }
+  .featured-book-content h2 { @apply mb-3 text-5xl; }
+  .featured-book-content p, .book-card p { @apply mb-[18px] text-muted; }
+  .book-meta { @apply mb-[22px] flex flex-wrap gap-2.5; }
+  .book-meta span { @apply rounded-full bg-[#f4efe7] px-3 py-2 text-sm text-[#5f625e]; }
+  .book-grid, .collection-grid { @apply grid grid-cols-3 gap-6; }
+  .collection-grid { @apply grid-cols-4; }
+  .book-cover, .artifact-img { @apply mb-[18px] h-60 rounded-[18px] bg-cover bg-center; }
+  .color-a { background: linear-gradient(135deg,#123c3a,#2d6f67); }
+  .color-b { background: linear-gradient(135deg,#b85e3d,#e1a66a); }
+  .color-c { background: linear-gradient(135deg,#9b7747,#dec387); }
+  .color-d { background: linear-gradient(135deg,#3b544e,#729489); }
+  .color-e { background: linear-gradient(135deg,#5a4034,#b27a58); }
+  .color-f { background: linear-gradient(135deg,#1f2e3d,#647e9d); }
+  .museo-book-a { background: linear-gradient(135deg,#3a2a20,#9b5f3d); }
+  .museo-book-b { background: linear-gradient(135deg,#6c4a2f,#d8b982); }
+  .museo-book-c { background: linear-gradient(135deg,#201915,#77604a); }
+  .artifact-a { background-image: url('https://images.unsplash.com/photo-1594794312433-05a69a98b7a0?auto=format&fit=crop&w=800&q=80'); }
+  .artifact-b { background-image: url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=800&q=80'); }
+  .artifact-c { background: linear-gradient(135deg,#665448,#c3a27a); }
+  .artifact-d { background: linear-gradient(135deg,#40342a,#b2845d); }
+  .artifact-card h3, .book-card h3 { @apply mb-2.5 text-[1.9rem]; }
+  .artifact-card p { @apply mb-3.5 text-muted; }
+  .artifact-card span { @apply inline-block rounded-full bg-museoStone px-3 py-2 font-bold text-museoDark; }
+
+  .donation-grid { @apply grid grid-cols-2 gap-6; }
+  .bank-box { @apply mt-[18px] rounded-[18px] bg-[#f5f0e8] p-[22px]; }
+  .museo-box { @apply bg-[#f1e2cc]; }
+  .impact-list { @apply mt-[18px] grid gap-3; }
+  .impact-list li { @apply rounded-[14px] bg-[#f5f0e8] px-4 py-3.5; }
+
+  .form-layout { @apply grid grid-cols-[.9fr_1.1fr] gap-[30px]; }
+  .form-info h2 { @apply mb-3 text-5xl; }
+  .form-info p { @apply text-muted; }
+  .info-points { @apply mt-6 grid gap-[18px]; }
+  .info-point { @apply rounded-[18px] bg-[#f5f0e8] p-[18px]; }
+  .form-row { @apply mb-[18px] grid grid-cols-2 gap-[18px]; }
+  .input-group { @apply flex flex-col gap-2; }
+  .input-group label { @apply font-bold; }
+  .input-group.full { @apply col-span-full; }
+  .full-btn { @apply w-full; }
+
+  .footer { @apply bg-dark pt-[70px] text-white/90; }
+  .footer-grid { @apply grid grid-cols-[1.3fr_1fr_1fr] gap-[30px] pb-10; }
+  .footer h3, .footer h4 { @apply mb-3.5 text-white; }
+  .footer li { @apply mb-2.5; }
+  .footer a { @apply text-white/80 hover:text-white; }
+  .footer-bottom { @apply border-t border-white/10 py-[22px] text-center text-sm; }
+
+  .not-found { @apply flex min-h-[70vh] items-center justify-center px-5 py-20 text-center; }
+  .not-found h1 { @apply mb-3 text-5xl; }
+  .not-found p { @apply mb-5 text-muted; }
+  .route-loading { @apply flex min-h-screen items-center justify-center bg-bgSoft px-5 text-center text-muted; }
+
+  @media (max-width: 1100px) {
+    .ecosystem-grid, .split-grid, .cards-grid.three, .cards-grid.four, .mission-grid, .dashboard-layout, .course-grid, .book-grid, .collection-grid, .donation-grid, .form-layout, .footer-grid, .timeline-row, .featured-book, .path-grid, .support-card { @apply grid-cols-1; }
+    .timeline-row.reverse .timeline-media { @apply order-none; }
+    .library-head, .dashboard-top { @apply flex-col items-start; }
+    .search-input, .library-search { @apply max-w-full min-w-0 w-full; }
+    .support-card { @apply items-start; }
+  }
+
+  @media (max-width: 860px) {
+    .menu-toggle { @apply block; }
+    .nav-links { @apply absolute left-0 right-0 top-[78px] hidden flex-col items-start border-b border-black/5 bg-white p-5; }
+    .museo .nav-links { @apply bg-[#fcf7ee]; }
+    .ecosystem .nav-links { @apply bg-[#fffaf2]; }
+    .nav-links.open { @apply flex; }
+    .hero { @apply min-h-[80vh]; }
+    .hero h1, .ecosystem-copy h1 { @apply text-5xl; }
+    .page-title, .page-hero h1, .split-text h2, .featured-book-content h2, .form-info h2, .section-heading h2 { @apply text-[2.5rem]; }
+    .form-row { @apply grid-cols-1; }
+    .ecosystem-hero { @apply py-[60px]; }
+    .portal-card { @apply min-h-[220px]; }
+    .path-card { @apply min-h-[360px] p-7; }
+    .support-actions { @apply w-full flex-col; }
+    .support-actions .btn { @apply w-full; }
+  }
+}
+@layer components {
+  .foundation-hero {
+    @apply relative overflow-hidden bg-dark text-white;
+    min-height: calc(100vh - 78px);
+  }
+
+  .foundation-hero::before {
+    @apply absolute inset-0 content-[''];
+    background:
+      radial-gradient(circle at 18% 18%, rgba(213, 122, 82, .34), transparent 32%),
+      radial-gradient(circle at 86% 24%, rgba(207, 169, 105, .24), transparent 34%),
+      linear-gradient(135deg, rgba(13, 59, 54, .96), rgba(33, 52, 42, .94) 48%, rgba(108, 74, 47, .92));
+  }
+
+  .foundation-hero-overlay {
+    @apply absolute inset-0 opacity-30;
+    background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .foundation-hero-grid {
+    @apply relative z-[2] grid grid-cols-[1.05fr_.95fr] items-center gap-12 py-20;
+    min-height: calc(100vh - 78px);
+  }
+
+  .foundation-hero-copy h1 {
+    @apply mb-5 font-display text-[clamp(3.2rem,6vw,6rem)] leading-[.98];
+  }
+
+  .foundation-hero-copy .hero-text {
+    @apply max-w-[690px] text-[1.12rem] text-white/90;
+  }
+
+  .foundation-hero-card {
+    @apply relative rounded-[36px] bg-white/10 p-3 shadow-card backdrop-blur;
+  }
+
+  .foundation-hero-card img {
+    @apply h-[620px] w-full rounded-[28px] object-cover;
+  }
+
+  .foundation-floating-card {
+    @apply absolute bottom-8 left-8 right-8 rounded-[24px] border border-white/20 bg-dark/85 p-6 text-white shadow-card backdrop-blur;
+  }
+
+  .foundation-floating-card span {
+    @apply mb-2 block text-xs font-extrabold uppercase tracking-[0.16em] text-[#f2cf93];
+  }
+
+  .foundation-floating-card strong {
+    @apply block font-display text-[2rem] leading-none;
+  }
+
+  .foundation-floating-card p {
+    @apply mt-2 text-white/80;
+  }
+
+  .foundation-stats-section,
+  .student-stats-section {
+    @apply bg-white py-6;
+  }
+
+  .foundation-stats-grid {
+    @apply grid grid-cols-4 gap-4;
+  }
+
+  .foundation-stat {
+    @apply rounded-[22px] border border-black/5 bg-[#fffaf2] p-6 text-center shadow-card;
+  }
+
+  .foundation-stat strong {
+    @apply block font-display text-[2.6rem] leading-none text-accent;
+  }
+
+  .foundation-stat span {
+    @apply mt-2 block text-sm font-bold uppercase tracking-[0.08em] text-muted;
+  }
+
+  .foundation-about-section {
+    @apply bg-[#fffaf2];
+  }
+
+  .foundation-about-grid,
+  .history-opening-grid,
+  .learning-grid,
+  .library-preview-grid,
+  .history-action-grid,
+  .courses-hero-grid,
+  .private-course-preview-grid,
+  .student-hero-grid {
+    @apply grid grid-cols-2 items-center gap-10;
+  }
+
+  .foundation-about-copy h2,
+  .learning-grid h2,
+  .library-preview-card h2,
+  .history-action-grid h2,
+  .private-course-preview-grid h2 {
+    @apply mb-5 font-display text-[clamp(2.6rem,5vw,4.7rem)] leading-[1.02];
+  }
+
+  .foundation-about-copy p,
+  .learning-grid p,
+  .library-preview-card p,
+  .history-action-grid p,
+  .private-course-preview-grid p {
+    @apply mb-4 text-muted;
+  }
+
+  .foundation-about-media,
+  .history-opening-media {
+    @apply overflow-hidden rounded-[34px] shadow-card;
+  }
+
+  .foundation-about-media img,
+  .history-opening-media img {
+    @apply h-[520px] w-full object-cover;
+  }
+
+  .foundation-pillars-grid {
+    @apply items-stretch;
+  }
+
+  .foundation-pillar-card,
+  .course-step-card {
+    @apply rounded-card border border-black/5 bg-white p-7 shadow-card;
+  }
+
+  .pillar-icon {
+    @apply mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#f6eee4] text-2xl;
+  }
+
+  .foundation-pillar-card h3,
+  .course-step-card h3 {
+    @apply mb-3 text-[1.85rem];
+  }
+
+  .foundation-pillar-card p,
+  .course-step-card p {
+    @apply text-muted;
+  }
+
+  .foundation-programs-section {
+    @apply bg-[#fbf8f2];
+  }
+
+  .split-heading {
+    @apply grid grid-cols-[1fr_.8fr] items-end gap-10;
+  }
+
+  .split-heading > p {
+    @apply text-muted;
+  }
+
+  .program-showcase-grid {
+    @apply grid grid-cols-5 gap-5;
+  }
+
+  .program-showcase-card {
+    @apply overflow-hidden rounded-[28px] bg-white shadow-card;
+  }
+
+  .program-showcase-card img {
+    @apply h-[230px] w-full object-cover;
+  }
+
+  .program-showcase-card div {
+    @apply p-6;
+  }
+
+  .program-showcase-card h3 {
+    @apply mb-3 text-[1.65rem];
+  }
+
+  .program-showcase-card p {
+    @apply text-sm text-muted;
+  }
+
+  .foundation-learning-section {
+    @apply bg-dark;
+  }
+
+  .foundation-learning-section h2,
+  .foundation-learning-section p {
+    @apply text-white;
+  }
+
+  .foundation-learning-section p {
+    @apply text-white/80;
+  }
+
+  .learning-panel-preview {
+    @apply rounded-[30px] border border-white/10 bg-white/10 p-7 text-white shadow-card backdrop-blur;
+  }
+
+  .mini-dashboard-top {
+    @apply mb-6 flex items-center justify-between gap-4 rounded-[20px] bg-white p-5 text-dark;
+  }
+
+  .mini-dashboard-top span {
+    @apply text-sm font-extrabold uppercase tracking-[0.12em] text-accent;
+  }
+
+  .mini-dashboard-top strong {
+    @apply font-display text-[2rem] leading-none;
+  }
+
+  .mini-course-row {
+    @apply mt-5 mb-2 flex items-center justify-between gap-4 text-white;
+  }
+
+  .mini-progress {
+    @apply h-3 overflow-hidden rounded-full bg-white/15;
+  }
+
+  .mini-progress span {
+    @apply block h-full rounded-full;
+    background: linear-gradient(90deg, #d57a52, #cfa969);
+  }
+
+  .library-preview-grid {
+    @apply items-stretch;
+  }
+
+  .library-preview-card,
+  .support-card,
+  .foundation-cta-card,
+  .course-system-card,
+  .student-profile-card {
+    @apply rounded-[34px] bg-white p-9 shadow-card;
+  }
+
+  .library-preview-list {
+    @apply grid gap-4;
+  }
+
+  .library-preview-list article {
+    @apply rounded-[24px] bg-[#f6eee4] p-6 font-bold text-dark;
+  }
+
+  .foundation-cta-section {
+    @apply bg-[#fffaf2];
+  }
+
+  .foundation-cta-card {
+    @apply grid grid-cols-[1fr_auto] items-center gap-8;
+  }
+
+  .foundation-cta-card h2 {
+    @apply mb-4 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02];
+  }
+
+  .foundation-cta-card p {
+    @apply max-w-[780px] text-muted;
+  }
+
+  .foundation-history-hero {
+    background: url('https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1600&q=80') center/cover;
+  }
+
+  .history-opening-section {
+    @apply bg-[#fffaf2];
+  }
+
+  .history-opening-grid h2 {
+    @apply mb-5 font-display text-[clamp(2.6rem,5vw,4.8rem)] leading-[1.02];
+  }
+
+  .history-opening-grid p {
+    @apply mb-4 text-muted;
+  }
+
+  .foundation-timeline-section {
+    @apply bg-[#fbf8f2];
+  }
+
+  .foundation-timeline-list .timeline-row {
+    @apply rounded-[34px] bg-white p-5 shadow-card;
+  }
+
+  .history-action-section {
+    @apply bg-dark;
+  }
+
+  .history-action-section h2,
+  .history-action-section p {
+    @apply text-white;
+  }
+
+  .history-action-section p {
+    @apply text-white/80;
+  }
+
+  .history-action-cards {
+    @apply grid gap-4;
+  }
+
+  .history-action-cards article {
+    @apply rounded-[24px] border border-white/10 bg-white/10 p-6 text-white;
+  }
+
+  .history-action-cards strong {
+    @apply mb-2 block text-[1.35rem];
+  }
+
+  .history-action-cards span {
+    @apply text-white/75;
+  }
+
+  .history-gallery-section {
+    @apply bg-[#fffaf2];
+  }
+
+  .history-gallery-grid {
+    @apply grid grid-cols-4 gap-5;
+  }
+
+  .history-gallery-grid img {
+    @apply h-[310px] w-full rounded-[26px] object-cover shadow-card;
+  }
+
+  .foundation-courses-banner,
+  .student-courses-banner {
+    background: linear-gradient(180deg, #fff7ec, #fbf8f2);
+  }
+
+  .courses-hero-grid,
+  .student-hero-grid {
+    @apply items-start;
+  }
+
+  .course-system-card,
+  .student-profile-card {
+    @apply bg-dark text-white;
+  }
+
+  .course-system-card span,
+  .student-profile-card span {
+    @apply mb-3 block text-xs font-extrabold uppercase tracking-[0.16em] text-[#f2cf93];
+  }
+
+  .course-system-card h2,
+  .student-profile-card h2 {
+    @apply mb-4 font-display text-[2.5rem] leading-none;
+  }
+
+  .course-system-card p,
+  .student-profile-card p {
+    @apply text-white/80;
+  }
+
+  .courses-actions .btn-outline-dark {
+    @apply border-dark/20;
+  }
+
+  .course-model-section {
+    @apply bg-white;
+  }
+
+  .course-steps-grid {
+    @apply items-stretch;
+  }
+
+  .public-catalog-section {
+    @apply bg-[#f2ede3];
+  }
+
+  .catalog-top h2 {
+    @apply font-display text-[3.4rem] leading-none;
+  }
+
+  .foundation-course-grid {
+    @apply items-stretch;
+  }
+
+  .foundation-course-card {
+    @apply flex flex-col shadow-card;
+  }
+
+  .course-cover-img {
+    @apply h-[230px] w-full object-cover;
+  }
+
+  .course-card-meta-row {
+    @apply mb-3 flex items-start justify-between gap-3;
+  }
+
+  .course-type {
+    @apply rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.08em];
+  }
+
+  .course-type.free {
+    @apply bg-[#e6f4eb] text-[#246240];
+  }
+
+  .course-type.paid {
+    @apply bg-[#fff0d8] text-[#9b5f16];
+  }
+
+  .course-facts {
+    @apply my-4 flex flex-wrap gap-2;
+  }
+
+  .course-facts span {
+    @apply rounded-full bg-[#f5f0e8] px-3 py-2 text-sm font-semibold text-muted;
+  }
+
+  .course-includes {
+    @apply mb-5 grid gap-2;
+  }
+
+  .course-includes li {
+    @apply relative pl-5 text-sm text-muted;
+  }
+
+  .course-includes li::before {
+    @apply absolute left-0 top-[.45rem] h-2 w-2 rounded-full bg-accent content-[''];
+  }
+
+  .course-footer-row {
+    @apply mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-black/5 pt-5;
+  }
+
+  .course-footer-row strong {
+    @apply text-accent;
+  }
+
+  .private-course-preview-section {
+    @apply bg-[#fffaf2];
+  }
+
+  .student-course-stack {
+    @apply grid gap-5;
+  }
+
+  .student-course-stack.compact {
+    @apply rounded-[34px] bg-white p-6 shadow-card;
+  }
+
+  .student-course-card {
+    @apply rounded-[24px] border border-black/5 bg-white p-6 shadow-card;
+  }
+
+  .student-course-stack.compact .student-course-card {
+    @apply shadow-none;
+  }
+
+  .student-course-card.full {
+    @apply p-7;
+  }
+
+  .student-course-head {
+    @apply mb-4 flex items-start justify-between gap-5;
+  }
+
+  .student-course-head span {
+    @apply mb-2 inline-block rounded-full bg-[#f6eee4] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-accent;
+  }
+
+  .student-course-head h3 {
+    @apply text-[2rem];
+  }
+
+  .student-course-head p {
+    @apply mt-2 text-muted;
+  }
+
+  .student-course-head > strong {
+    @apply font-display text-[3rem] leading-none text-accent;
+  }
+
+  .student-dashboard-layout {
+    @apply grid grid-cols-[280px_1fr] items-start gap-[26px];
+  }
+
+  .student-dashboard-main {
+    @apply rounded-card bg-white p-7 shadow-card;
+  }
+
+  .student-course-details {
+    @apply mt-5 grid grid-cols-4 gap-4;
+  }
+
+  .student-course-details article {
+    @apply rounded-[18px] bg-[#f6f2eb] p-4;
+  }
+
+  .student-course-details span {
+    @apply mb-1 block text-xs font-extrabold uppercase tracking-[0.08em] text-muted;
+  }
+
+  .student-course-details strong {
+    @apply text-sm text-dark;
+  }
+
+  .student-course-actions {
+    @apply mt-5 flex flex-wrap gap-3;
+  }
+
+  @media (max-width: 1200px) {
+    .program-showcase-grid,
+    .history-gallery-grid {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .foundation-hero-grid,
+    .foundation-about-grid,
+    .history-opening-grid,
+    .learning-grid,
+    .library-preview-grid,
+    .history-action-grid,
+    .courses-hero-grid,
+    .private-course-preview-grid,
+    .student-hero-grid,
+    .foundation-cta-card,
+    .split-heading,
+    .student-dashboard-layout,
+    .student-course-details {
+      @apply grid-cols-1;
+    }
+
+    .foundation-stats-grid {
+      @apply grid-cols-2;
+    }
+
+    .foundation-hero-card img {
+      @apply h-[480px];
+    }
+
+    .program-showcase-grid {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .foundation-hero-grid {
+      @apply py-14;
+    }
+
+    .foundation-hero-card img,
+    .foundation-about-media img,
+    .history-opening-media img {
+      @apply h-[360px];
+    }
+
+    .foundation-floating-card {
+      @apply static mt-3;
+    }
+
+    .foundation-stats-grid,
+    .program-showcase-grid,
+    .history-gallery-grid {
+      @apply grid-cols-1;
+    }
+
+    .foundation-stat strong {
+      @apply text-[2.2rem];
+    }
+
+    .catalog-top h2 {
+      @apply text-[2.6rem];
+    }
+  }
+}
