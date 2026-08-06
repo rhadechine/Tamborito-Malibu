@@ -6907,3 +6907,404 @@
     grid-template-columns: 1fr;
   }
 }
+/* Ajustes finales Tamborito - Malibú */
+.tamborito-color-logo {
+  align-items: center;
+  color: var(--platform-green);
+  display: inline-flex;
+  gap: 6px;
+}
+
+.tamborito-logo-word {
+  color: var(--platform-green);
+  font-weight: 900;
+}
+
+.tamborito-logo-green {
+  color: var(--platform-green);
+}
+
+.tamborito-logo-yellow {
+  color: var(--platform-gold);
+}
+
+.learning-photo-preview {
+  border-radius: 24px;
+  box-shadow: var(--platform-shadow);
+  height: 360px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.mission-grid.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.required-mark {
+  color: var(--platform-danger);
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+.platform-field input[readonly] {
+  background: #f4f6f5;
+  color: var(--platform-muted);
+  cursor: not-allowed;
+}
+
+.admin-resource-builder,
+.admin-lesson-extra-fields,
+.student-evidence-box {
+  background: #f7f9f8;
+  border: 1px solid var(--platform-border);
+  border-radius: 14px;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.admin-resource-row {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 0.55fr 1fr auto;
+}
+
+.admin-resource-row button,
+.admin-mini-button {
+  background: transparent;
+  border: 0;
+  color: var(--platform-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.student-evidence-box h3,
+.student-evidence-box h4 {
+  font-size: 1rem;
+}
+
+.student-evidence-box p,
+.student-evidence-box small {
+  color: var(--platform-muted);
+  font-size: 0.72rem;
+}
+
+.student-evidence-form {
+  display: grid;
+  gap: 12px;
+}
+
+.student-evidence-form input,
+.student-evidence-form textarea {
+  border: 1px solid var(--platform-border);
+  border-radius: 13px;
+  font: inherit;
+  padding: 12px;
+  width: 100%;
+}
+
+.student-evidence-status,
+.admin-evidence-list {
+  background: #ffffff;
+  border: 1px solid var(--platform-border);
+  border-radius: 11px;
+  display: grid;
+  gap: 5px;
+  margin-top: 9px;
+  padding: 10px;
+}
+
+.library-smart-search {
+  background: #ffffff;
+  border: 1px solid rgba(16, 61, 56, 0.1);
+  border-radius: 18px;
+  box-shadow: var(--platform-shadow-small);
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.library-smart-search label {
+  color: var(--platform-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.library-flip-card {
+  min-height: 410px;
+  perspective: 1200px;
+}
+
+.library-card-inner {
+  height: 100%;
+  min-height: 410px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 280ms ease;
+}
+
+.library-flip-card.show-description .library-card-inner {
+  transform: rotateY(180deg);
+}
+
+.library-card-front,
+.library-card-back {
+  backface-visibility: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(16, 61, 56, 0.08);
+  border-radius: 22px;
+  box-shadow: var(--platform-shadow-small);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  inset: 0;
+  overflow: hidden;
+  padding: 18px;
+  position: absolute;
+}
+
+.library-card-back {
+  transform: rotateY(180deg);
+}
+
+.library-card-front img,
+.library-card-back img {
+  border-radius: 16px;
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.library-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: auto;
+}
+
+.admin-student-layout-wide {
+  grid-template-columns: minmax(0, 1fr) 360px;
+}
+
+.admin-student-table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.admin-student-table-head-clean,
+.admin-student-table-row-clean {
+  grid-template-columns:
+    minmax(210px, 1.2fr)
+    minmax(230px, 1.15fr)
+    minmax(260px, 1.4fr)
+    minmax(120px, 0.65fr)
+    minmax(100px, 0.55fr)
+    minmax(90px, 0.45fr);
+  min-width: 1040px;
+}
+
+.admin-course-tags-cell {
+  gap: 4px;
+}
+
+.admin-course-tags-cell small {
+  background: #eef4f2;
+  border-radius: 999px;
+  color: var(--platform-green);
+  display: inline-flex;
+  font-size: 0.58rem;
+  font-weight: 750;
+  max-width: 240px;
+  overflow: hidden;
+  padding: 4px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-student-detail-stats.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.admin-student-courses-detail article {
+  align-items: start;
+  grid-template-columns: 58px 1fr;
+}
+
+.admin-student-courses-detail img {
+  height: 52px;
+  width: 58px;
+}
+
+.admin-empty-state {
+  color: var(--platform-muted);
+  padding: 24px;
+  text-align: center;
+}
+
+.admin-finance-stats {
+  margin-bottom: 20px;
+}
+
+.admin-transaction-report {
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.admin-transaction-table-head,
+.admin-transaction-table-row {
+  align-items: center;
+  display: grid;
+  gap: 14px;
+  grid-template-columns:
+    minmax(260px, 1.5fr)
+    minmax(130px, 0.7fr)
+    minmax(120px, 0.7fr)
+    minmax(120px, 0.7fr)
+    minmax(90px, 0.5fr);
+  min-width: 840px;
+  padding: 13px 0;
+}
+
+.admin-transaction-table-head {
+  border-bottom: 1px solid var(--platform-border);
+  color: var(--platform-muted);
+  font-size: 0.65rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.admin-transaction-table-row {
+  border-bottom: 1px solid #edf0ef;
+}
+
+.admin-transaction-table-row > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-transaction-table-row small,
+.admin-transaction-table-row span {
+  color: var(--platform-muted);
+  font-size: 0.68rem;
+}
+
+.admin-report-table-head-clean,
+.admin-report-table-row-clean {
+  grid-template-columns: minmax(260px, 1.5fr) 0.5fr 0.6fr 0.7fr;
+}
+
+.admin-useful-switches {
+  margin-top: 18px;
+}
+
+.privacy-content {
+  display: grid;
+  gap: 28px;
+}
+
+.privacy-content article {
+  background: #ffffff;
+  border: 1px solid rgba(16, 61, 56, 0.08);
+  border-radius: 20px;
+  box-shadow: var(--platform-shadow-small);
+  padding: 26px;
+}
+
+.privacy-content h2 {
+  font-size: 1.55rem;
+  margin-bottom: 10px;
+}
+
+.privacy-content p {
+  color: var(--platform-muted);
+}
+
+.museum-collection-groups {
+  display: grid;
+  gap: 48px;
+}
+
+.museum-collection-group {
+  display: grid;
+  gap: 22px;
+}
+
+.museum-collection-heading h2 {
+  color: #35241d;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin-bottom: 10px;
+}
+
+.museum-collection-heading p {
+  color: #735f52;
+  max-width: 760px;
+}
+
+.museum-piece-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.museum-piece-card {
+  background: #fffaf2;
+  border: 1px solid #e5d2b8;
+  border-radius: 24px;
+  box-shadow: 0 16px 38px rgba(78, 57, 42, 0.08);
+  overflow: hidden;
+}
+
+.museum-piece-card img {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.museum-piece-content {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.museum-piece-content h3 {
+  color: #35241d;
+  font-size: 1.5rem;
+}
+
+.museum-piece-content dl {
+  display: grid;
+  gap: 12px;
+}
+
+.museum-piece-content dt {
+  color: #9a5b35;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.museum-piece-content dd {
+  color: #5f5149;
+  font-size: 0.86rem;
+  margin: 3px 0 0;
+}
+
+.museum-admin-note .feature-card {
+  min-height: auto;
+}
+
+@media (max-width: 1080px) {
+  .mission-grid.two-columns,
+  .museum-piece-grid,
+  .admin-resource-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-student-layout-wide {
+    grid-template-columns: 1fr;
+  }
+}

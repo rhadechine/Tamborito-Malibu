@@ -3,20 +3,20 @@ import PageShell from '../components/PageShell';
 
 const ecosystemCards = [
   {
-    title: 'Tradición musical',
-    text: 'La Fundación Tamborito impulsa la enseñanza de percusión folklórica, gaitas y cantos tradicionales como expresión viva de Zambrano, Bolívar.',
+    title: 'Formación musical',
+    text: 'Fundación Tamborito concentra procesos de percusión, gaitas, cantos tradicionales y acompañamiento educativo para la comunidad.',
   },
   {
     title: 'Memoria patrimonial',
-    text: 'El Museo Arqueológico Malibú conserva y proyecta relatos, piezas y saberes que conectan al territorio con su historia ancestral.',
+    text: 'El Museo Arqueológico Malibú organiza piezas, relatos y registros que explican la historia del territorio.',
   },
   {
-    title: 'Educación y comunidad',
-    text: 'Ambos espacios fortalecen procesos formativos, culturales y sociales para niños, jóvenes, familias e instituciones del municipio.',
+    title: 'Participación comunitaria',
+    text: 'El ecosistema conecta estudiantes, familias, visitantes, docentes, aliados e investigadores en una misma plataforma.',
   },
   {
-    title: 'Cultura para el futuro',
-    text: 'El ecosistema une música, patrimonio, formación y participación comunitaria en una misma plataforma cultural.',
+    title: 'Gestión cultural',
+    text: 'El sitio permite consultar información pública, cursos, biblioteca, eventos, donaciones y contenidos de cada entidad.',
   },
 ];
 
@@ -27,83 +27,40 @@ export default function EcosystemHome() {
         <section className="ecosystem-hero">
           <div className="container ecosystem-grid">
             <div className="ecosystem-copy">
-              <p className="eyebrow">
-                Cultura, memoria y territorio
-              </p>
+              <p className="eyebrow">Cultura, memoria y territorio</p>
 
-              <h1>
-                Un ecosistema cultural para preservar la
-                música y el patrimonio de Zambrano.
-              </h1>
+              <h1>Un sitio para presentar el trabajo cultural de Tamborito y Malibú.</h1>
 
               <p>
-                Fundación Tamborito y Museo Arqueológico
-                Malibú se unen en una misma visión: proteger
-                la identidad cultural, formar nuevas
-                generaciones y mantener viva la memoria del
-                Caribe colombiano.
+                La plataforma reúne dos proyectos con identidad propia: Fundación Tamborito,
+                dedicada a la formación musical tradicional, y el Museo Arqueológico Malibú,
+                enfocado en la conservación y divulgación patrimonial.
               </p>
 
               <div className="ecosystem-actions">
-                <Link
-                  to="/fundacion"
-                  className="btn btn-primary"
-                >
-                  Conocer Fundación
-                </Link>
-
-                <Link
-                  to="/museo"
-                  className="btn btn-secondary"
-                >
-                  Explorar Museo
-                </Link>
-
-                <Link
-                  to="/inscripcion"
-                  className="btn btn-light"
-                >
+                <Link to="/inscripcion" className="btn btn-primary">
                   Inscripción
+                </Link>
+                <Link to="/donaciones" className="btn btn-secondary">
+                  Donar
                 </Link>
               </div>
             </div>
 
             <div className="portal-cards">
-              <Link
-                to="/fundacion"
-                className="portal-card portal-fundacion"
-              >
-                <span>
-                  Fundación Tamborito
-                </span>
-
-                <h2>
-                  Música, tradición y neuroeducación
-                </h2>
-
+              <Link to="/fundacion" className="portal-card portal-fundacion">
+                <span>Fundación Tamborito</span>
+                <h2>Música, formación y tradición viva</h2>
                 <p>
-                  Formación artística, talleres culturales,
-                  cursos, biblioteca e inscripción a procesos
-                  educativos.
+                  Historia institucional, cursos, biblioteca, procesos formativos e inscripción.
                 </p>
               </Link>
 
-              <Link
-                to="/museo"
-                className="portal-card portal-museo"
-              >
-                <span>
-                  Museo Arqueológico Malibú
-                </span>
-
-                <h2>
-                  Historia, colecciones y patrimonio
-                </h2>
-
+              <Link to="/museo" className="portal-card portal-museo">
+                <span>Museo Arqueológico Malibú</span>
+                <h2>Colecciones, historia y patrimonio</h2>
                 <p>
-                  Historia institucional, colecciones
-                  arqueológicas, atención a visitantes y
-                  conservación de la memoria territorial.
+                  Historia del Museo, piezas destacadas, documentación, visitas y contacto.
                 </p>
               </Link>
             </div>
@@ -113,31 +70,19 @@ export default function EcosystemHome() {
         <section className="section ecosystem-intro">
           <div className="container split-grid">
             <div className="split-text">
-              <p className="section-tag">
-                Nuestra esencia
-              </p>
-
-              <h2>
-                Dos proyectos, una misma raíz cultural.
-              </h2>
+              <h2>Dos entidades, una plataforma cultural.</h2>
             </div>
 
             <div className="intro-copy">
               <p>
-                Este sitio funciona como puerta de entrada al
-                trabajo cultural de Fundación Tamborito y del
-                Museo Arqueológico Malibú. Desde aquí,
-                visitantes, estudiantes, familias y aliados
-                pueden conocer las dos organizaciones y
-                acceder a sus servicios principales.
+                El usuario puede entrar al espacio de cada organización sin autenticarse. Cada
+                entidad conserva su contenido, su navegación y su identidad visual, pero comparte
+                una misma base de administración para evitar duplicidad de información.
               </p>
 
               <p>
-                La Fundación concentra su labor en la
-                formación musical y comunitaria. El Museo
-                proyecta la memoria patrimonial y
-                arqueológica del territorio. Juntos
-                construyen una experiencia cultural completa.
+                La Fundación organiza su labor educativa y musical. El Museo organiza su memoria
+                arqueológica y documental. El ecosistema sirve como puerta de entrada común.
               </p>
             </div>
           </div>
@@ -146,27 +91,14 @@ export default function EcosystemHome() {
         <section className="section soft-bg">
           <div className="container">
             <div className="section-heading center">
-              <p className="section-tag">
-                Ecosistema cultural
-              </p>
-
-              <h2>
-                Música, historia y comunidad en un solo lugar.
-              </h2>
+              <h2>Qué reúne este ecosistema</h2>
             </div>
 
             <div className="cards-grid four">
               {ecosystemCards.map((card) => (
-                <article
-                  className="info-card ecosystem-info-card"
-                  key={card.title}
-                >
-                  <div className="card-icon">
-                    ✦
-                  </div>
-
+                <article className="info-card ecosystem-info-card" key={card.title}>
+                  <div className="card-icon">✦</div>
                   <h3>{card.title}</h3>
-
                   <p>{card.text}</p>
                 </article>
               ))}
@@ -174,102 +106,19 @@ export default function EcosystemHome() {
           </div>
         </section>
 
-        <section className="section ecosystem-paths">
-          <div className="container path-grid">
-            <article className="path-card path-foundation">
-              <div>
-                <p className="section-tag light">
-                  Fundación Tamborito
-                </p>
-
-                <h2>
-                  Formación cultural desde la música
-                  tradicional.
-                </h2>
-
-                <p>
-                  Conoce los procesos de formación, cursos,
-                  biblioteca, historia institucional y
-                  oportunidades de inscripción.
-                </p>
-              </div>
-
-              <Link
-                to="/fundacion"
-                className="btn btn-primary"
-              >
-                Entrar a Fundación
-              </Link>
-            </article>
-
-            <article className="path-card path-museum">
-              <div>
-                <p className="section-tag light">
-                  Museo Arqueológico Malibú
-                </p>
-
-                <h2>
-                  Memoria arqueológica y patrimonio
-                  territorial.
-                </h2>
-
-                <p>
-                  Conoce su historia, explora sus colecciones
-                  y descubre cómo visitar, contactar o apoyar
-                  la conservación del patrimonio.
-                </p>
-              </div>
-
-              <Link
-                to="/museo"
-                className="btn btn-museo"
-              >
-                Entrar al Museo
-              </Link>
-            </article>
-          </div>
-        </section>
-
         <section className="section ecosystem-support">
           <div className="container support-card">
             <div>
-              <p className="section-tag">
-                Participa
-              </p>
-
-              <h2>
-                Apoya la cultura, la educación y la memoria
-                del territorio.
-              </h2>
-
+              <h2>Apoya la cultura desde un único proceso de donación.</h2>
               <p>
-                Puedes vincularte mediante inscripción a
-                procesos formativos, donaciones,
-                participación en actividades culturales o
-                contacto directo con el Museo.
+                Las donaciones se concentran en una sola sección. Allí el usuario podrá indicar si
+                desea apoyar a la Fundación, al Museo o al ecosistema completo.
               </p>
             </div>
 
             <div className="support-actions">
-              <Link
-                to="/inscripcion"
-                className="btn btn-primary"
-              >
-                Inscribirme
-              </Link>
-
-              <Link
-                to="/donaciones"
-                className="btn btn-outline-dark"
-              >
-                Donar a la Fundación
-              </Link>
-
-              <Link
-                to="/museo/donar"
-                className="btn btn-museo"
-              >
-                Donar al Museo
+              <Link to="/donaciones" className="btn btn-primary">
+                Ir a donaciones
               </Link>
             </div>
           </div>
@@ -279,89 +128,44 @@ export default function EcosystemHome() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <h3>
-              Ecosistema Cultural Tamborito & Malibú
-            </h3>
-
+            <h3>Ecosistema Cultural Tamborito & Malibú</h3>
             <p>
-              Un espacio donde conviven la formación
-              artística de Fundación Tamborito y la memoria
-              patrimonial del Museo Arqueológico Malibú.
+              Plataforma institucional para difundir formación musical, memoria patrimonial y
+              participación cultural.
             </p>
           </div>
 
           <div>
             <h4>Fundación</h4>
-
             <ul>
-              <li>
-                <Link to="/fundacion">
-                  Inicio Fundación
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/historia">
-                  Historia
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/cursos">
-                  Cursos
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/biblioteca">
-                  Biblioteca
-                </Link>
-              </li>
+              <li><Link to="/fundacion">Inicio Fundación</Link></li>
+              <li><Link to="/historia">Historia</Link></li>
+              <li><Link to="/cursos">Cursos</Link></li>
+              <li><Link to="/biblioteca">Biblioteca</Link></li>
             </ul>
           </div>
 
           <div>
             <h4>Museo</h4>
-
             <ul>
-              <li>
-                <Link to="/museo">
-                  Inicio Museo
-                </Link>
-              </li>
+              <li><Link to="/museo">Inicio Museo</Link></li>
+              <li><Link to="/museo/historia">Historia</Link></li>
+              <li><Link to="/museo/colecciones">Colecciones</Link></li>
+              <li><Link to="/museo/contactanos">Contáctanos</Link></li>
+            </ul>
+          </div>
 
-              <li>
-                <Link to="/museo/historia">
-                  Historia
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/museo/colecciones">
-                  Colecciones
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/museo/contactanos">
-                  Contáctanos
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/museo/donar">
-                  Donar
-                </Link>
-              </li>
+          <div>
+            <h4>Legal</h4>
+            <ul>
+              <li><Link to="/politicas-privacidad">Política de privacidad</Link></li>
+              <li><Link to="/donaciones">Donaciones</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>
-            © 2026 Ecosistema Cultural Tamborito & Museo
-            Arqueológico Malibú.
-          </p>
+          <p>© 2026 Ecosistema Cultural Tamborito & Malibú.</p>
         </div>
       </footer>
     </PageShell>

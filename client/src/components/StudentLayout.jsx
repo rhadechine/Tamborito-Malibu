@@ -8,67 +8,24 @@ import {
 } from 'react-router-dom';
 import PlatformIcon from './PlatformIcon';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 import { usePlatform } from '../context/PlatformContext';
 import { formatDate, getInitials } from '../utils/formatters';
 
 const studentLinks = [
-  {
-    to: '/campus',
-    label: 'Inicio',
-    icon: 'home',
-    end: true,
-  },
-  {
-    to: '/campus/cursos',
-    label: 'Mis cursos',
-    icon: 'book',
-  },
-  {
-    to: '/campus/certificados',
-    label: 'Certificados',
-    icon: 'certificate',
-  },
-  {
-    to: '/campus/compras',
-    label: 'Compras',
-    icon: 'orders',
-  },
-  {
-    to: '/campus/perfil',
-    label: 'Mi perfil',
-    icon: 'user',
-  },
+  { to: '/campus', label: 'Inicio', icon: 'home', end: true },
+  { to: '/campus/cursos', label: 'Mis cursos', icon: 'book' },
+  { to: '/campus/certificados', label: 'Certificados', icon: 'certificate' },
 ];
 
 function getPageTitle(pathname) {
-  if (pathname.includes('/clase/')) {
-    return 'Reproductor de clase';
-  }
-
-  if (
-    pathname.startsWith('/campus/cursos/') &&
-    pathname !== '/campus/cursos'
-  ) {
-    return 'Espacio del curso';
-  }
-
-  if (pathname === '/campus/cursos') {
-    return 'Mis cursos';
-  }
-
-  if (pathname === '/campus/certificados') {
-    return 'Certificados';
-  }
-
-  if (pathname === '/campus/compras') {
-    return 'Compras';
-  }
-
-  if (pathname === '/campus/perfil') {
-    return 'Mi perfil';
-  }
-
-  return 'Resumen de aprendizaje';
+  if (pathname.includes('/clase/')) return 'Clase';
+  if (pathname.startsWith('/campus/cursos/') && pathname !== '/campus/cursos') return 'Curso';
+  if (pathname === '/campus/cursos') return 'Mis cursos';
+  if (pathname === '/campus/certificados') return 'Certificados';
+  if (pathname === '/campus/perfil') return 'Mi perfil';
+  if (pathname === '/campus/compras') return 'Compras';
+  return 'Inicio';
 }
 
 export default function StudentLayout() {
@@ -80,6 +37,7 @@ export default function StudentLayout() {
   const navigate = useNavigate();
 
   const { user, logout } = useAuth();
+  const { count } = useCart();
 
   const {
     getUserNotifications,
@@ -88,10 +46,7 @@ export default function StudentLayout() {
   } = usePlatform();
 
   const notifications = getUserNotifications(user.id);
-  const unreadCount = notifications.filter(
-    (notification) => !notification.read,
-  ).length;
-
+  const unreadCount = notifications.filter((notification) => !notification.read).length;
   const pageTitle = getPageTitle(location.pathname);
 
   function closeMenus() {
@@ -118,31 +73,19 @@ export default function StudentLayout() {
 
   return (
     <div className="student-platform">
-      <aside
-        className={[
-          'student-platform-sidebar',
-          sidebarOpen ? 'open' : '',
-        ].join(' ')}
-      >
+      <aside className={['student-platform-sidebar', sidebarOpen ? 'open' : ''].join(' ')}>
         <div className="student-sidebar-brand">
           <Link to="/fundacion" onClick={closeMenus}>
             Fundación <span>Tamborito</span>
           </Link>
 
-          <button
-            type="button"
-            aria-label="Cerrar menú"
-            onClick={() => setSidebarOpen(false)}
-          >
+          <button type="button" aria-label="Cerrar menú" onClick={() => setSidebarOpen(false)}>
             <PlatformIcon name="close" size={22} />
           </button>
         </div>
 
         <div className="student-sidebar-account">
-          <div className="student-sidebar-avatar">
-            {getInitials(user.name)}
-          </div>
-
+          <div className="student-sidebar-avatar">{getInitials(user.name)}</div>
           <div>
             <strong>{user.name}</strong>
             <span>Estudiante</span>
@@ -151,15 +94,10 @@ export default function StudentLayout() {
 
         <nav className="student-sidebar-navigation">
           <p>Campus</p>
-
           <ul>
             {studentLinks.map((link) => (
               <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  end={link.end}
-                  onClick={closeMenus}
-                >
+                <NavLink to={link.to} end={link.end} onClick={closeMenus}>
                   <PlatformIcon name={link.icon} size={20} />
                   <span>{link.label}</span>
                 </NavLink>
@@ -170,31 +108,19 @@ export default function StudentLayout() {
 
         <div className="student-sidebar-secondary">
           <p>Explorar</p>
-
           <Link to="/cursos" onClick={closeMenus}>
             <PlatformIcon name="search" size={20} />
             Catálogo de cursos
           </Link>
-
           <Link to="/biblioteca" onClick={closeMenus}>
             <PlatformIcon name="book" size={20} />
             Biblioteca
           </Link>
-
           <Link to="/fundacion" onClick={closeMenus}>
             <PlatformIcon name="external" size={20} />
             Sitio de la fundación
           </Link>
         </div>
-
-        <button
-          type="button"
-          className="student-sidebar-logout"
-          onClick={handleLogout}
-        >
-          <PlatformIcon name="logout" size={20} />
-          Cerrar sesión
-        </button>
       </aside>
 
       {sidebarOpen && (
@@ -225,12 +151,14 @@ export default function StudentLayout() {
           </div>
 
           <div className="student-topbar-actions">
-            <Link
-              to="/cursos"
-              className="student-explore-button"
-            >
+            <Link to="/carrito" className="student-topbar-icon student-cart-link" aria-label={`Carrito con ${count} cursos`}>
+              <PlatformIcon name="cart" size={21} />
+              {count > 0 && <span>{count}</span>}
+            </Link>
+
+            <Link to="/cursos" className="student-explore-button">
               <PlatformIcon name="search" size={18} />
-              Explorar cursos
+              Cursos
             </Link>
 
             <div className="student-topbar-dropdown">
@@ -242,10 +170,7 @@ export default function StudentLayout() {
                 onClick={openNotifications}
               >
                 <PlatformIcon name="bell" size={21} />
-
-                {unreadCount > 0 && (
-                  <span>{unreadCount}</span>
-                )}
+                {unreadCount > 0 && <span>{unreadCount}</span>}
               </button>
 
               {notificationsOpen && (
@@ -253,18 +178,11 @@ export default function StudentLayout() {
                   <div className="student-dropdown-heading">
                     <div>
                       <strong>Notificaciones</strong>
-                      <span>
-                        {unreadCount} sin leer
-                      </span>
+                      <span>{unreadCount} sin leer</span>
                     </div>
 
                     {unreadCount > 0 && (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          markAllNotificationsRead(user.id)
-                        }
-                      >
+                      <button type="button" onClick={() => markAllNotificationsRead(user.id)}>
                         Marcar todas
                       </button>
                     )}
@@ -272,62 +190,29 @@ export default function StudentLayout() {
 
                   <div className="student-notification-list">
                     {notifications.length === 0 ? (
-                      <div className="student-dropdown-empty">
-                        No tienes notificaciones.
-                      </div>
+                      <div className="student-dropdown-empty">No tienes notificaciones.</div>
                     ) : (
-                      notifications.slice(0, 6).map(
-                        (notification) => (
-                          <button
-                            type="button"
-                            key={notification.id}
-                            className={[
-                              'student-notification-item',
-                              notification.read
-                                ? ''
-                                : 'unread',
-                            ].join(' ')}
-                            onClick={() =>
-                              markNotificationRead(
-                                notification.id,
-                              )
-                            }
-                          >
-                            <div>
-                              <PlatformIcon
-                                name={
-                                  notification.type ===
-                                  'certificate'
-                                    ? 'certificate'
-                                    : notification.type ===
-                                        'order'
-                                      ? 'orders'
-                                      : 'book'
-                                }
-                                size={19}
-                              />
-                            </div>
+                      notifications.slice(0, 6).map((notification) => (
+                        <button
+                          type="button"
+                          key={notification.id}
+                          className={['student-notification-item', notification.read ? '' : 'unread'].join(' ')}
+                          onClick={() => markNotificationRead(notification.id)}
+                        >
+                          <div>
+                            <PlatformIcon
+                              name={notification.type === 'certificate' ? 'certificate' : notification.type === 'order' ? 'orders' : 'book'}
+                              size={19}
+                            />
+                          </div>
 
-                            <span>
-                              <strong>
-                                {notification.title}
-                              </strong>
-                              <p>
-                                {notification.message}
-                              </p>
-                              <small>
-                                {formatDate(
-                                  notification.createdAt,
-                                  {
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                  },
-                                )}
-                              </small>
-                            </span>
-                          </button>
-                        ),
-                      )
+                          <span>
+                            <strong>{notification.title}</strong>
+                            <p>{notification.message}</p>
+                            <small>{formatDate(notification.createdAt, { hour: '2-digit', minute: '2-digit' })}</small>
+                          </span>
+                        </button>
+                      ))
                     )}
                   </div>
                 </div>
@@ -342,40 +227,20 @@ export default function StudentLayout() {
                 onClick={openProfileMenu}
               >
                 <span>{getInitials(user.name)}</span>
-
                 <div>
                   <strong>{user.name}</strong>
                   <small>{user.email}</small>
                 </div>
-
-                <PlatformIcon
-                  name="chevronDown"
-                  size={17}
-                />
+                <PlatformIcon name="chevronDown" size={17} />
               </button>
 
               {profileOpen && (
                 <div className="student-profile-menu">
-                  <Link
-                    to="/campus/perfil"
-                    onClick={closeMenus}
-                  >
+                  <Link to="/campus/perfil" onClick={closeMenus}>
                     <PlatformIcon name="user" size={18} />
                     Mi perfil
                   </Link>
-
-                  <Link
-                    to="/campus/compras"
-                    onClick={closeMenus}
-                  >
-                    <PlatformIcon name="orders" size={18} />
-                    Mis compras
-                  </Link>
-
-                  <button
-                    type="button"
-                    onClick={handleLogout}
-                  >
+                  <button type="button" onClick={handleLogout}>
                     <PlatformIcon name="logout" size={18} />
                     Cerrar sesión
                   </button>

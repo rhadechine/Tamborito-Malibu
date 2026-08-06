@@ -41,6 +41,10 @@ const Registration = lazy(
   () => import('./pages/Registration.jsx'),
 );
 
+const PrivacyPolicy = lazy(
+  () => import('./pages/PrivacyPolicy.jsx'),
+);
+
 const Login = lazy(
   () => import('./pages/auth/Login.jsx'),
 );
@@ -77,16 +81,8 @@ const Certificates = lazy(
   () => import('./pages/student/Certificates.jsx'),
 );
 
-const Orders = lazy(
-  () => import('./pages/student/Orders.jsx'),
-);
-
 const Profile = lazy(
   () => import('./pages/student/Profile.jsx'),
-);
-
-const AdminDashboard = lazy(
-  () => import('./pages/admin/AdminDashboard.jsx'),
 );
 
 const AdminCourses = lazy(
@@ -99,14 +95,6 @@ const AdminCourseEditor = lazy(
 
 const AdminStudents = lazy(
   () => import('./pages/admin/AdminStudents.jsx'),
-);
-
-const AdminEnrollments = lazy(
-  () => import('./pages/admin/AdminEnrollments.jsx'),
-);
-
-const AdminOrders = lazy(
-  () => import('./pages/admin/AdminOrders.jsx'),
 );
 
 const AdminAnalytics = lazy(
@@ -193,6 +181,11 @@ export default function App() {
           />
 
           <Route
+            path="/politicas-privacidad"
+            element={<PrivacyPolicy />}
+          />
+
+          <Route
             path="/login"
             element={<Login />}
           />
@@ -251,7 +244,7 @@ export default function App() {
 
             <Route
               path="compras"
-              element={<Orders />}
+              element={<Navigate to="/carrito" replace />}
             />
 
             <Route
@@ -270,7 +263,7 @@ export default function App() {
           >
             <Route
               index
-              element={<AdminDashboard />}
+              element={<Navigate to="/admin/cursos" replace />}
             />
 
             <Route
@@ -295,12 +288,12 @@ export default function App() {
 
             <Route
               path="inscripciones"
-              element={<AdminEnrollments />}
+              element={<Navigate to="/admin/estudiantes" replace />}
             />
 
             <Route
               path="ventas"
-              element={<AdminOrders />}
+              element={<Navigate to="/admin/reportes" replace />}
             />
 
             <Route
@@ -376,7 +369,7 @@ export default function App() {
 
           <Route
             path="/museo/donar"
-            element={<Donations />}
+            element={<Navigate to="/donaciones" replace />}
           />
 
           <Route

@@ -179,7 +179,6 @@ export default function CourseDetail() {
 
               <div className="course-detail-badges">
                 <span>{course.category}</span>
-                <span>{course.level}</span>
                 <span>
                   {course.isFree
                     ? 'Curso gratuito'
@@ -257,14 +256,6 @@ export default function CourseDetail() {
                   {course.certificate
                     ? 'Certificado'
                     : 'Sin certificado'}
-                </span>
-
-                <span>
-                  <PlatformIcon
-                    name="play"
-                    size={19}
-                  />
-                  {course.modality}
                 </span>
               </div>
             </div>
@@ -383,33 +374,22 @@ export default function CourseDetail() {
           <div className="container course-detail-layout">
             <div className="course-detail-main">
               <section className="course-detail-block">
-                <h2>
-                  Lo que aprenderás
-                </h2>
-
-                <div className="course-outcomes-grid">
-                  {course.learningOutcomes.map(
-                    (outcome) => (
-                      <article key={outcome}>
-                        <PlatformIcon
-                          name="check"
-                          size={20}
-                        />
-                        <span>{outcome}</span>
-                      </article>
-                    ),
-                  )}
-                </div>
-              </section>
-
-              <section className="course-detail-block">
-                <h2>
-                  Sobre este curso
-                </h2>
+                <h2>Descripción del curso</h2>
 
                 <p className="course-description">
-                  {course.description}
+                  {course.description} Este curso está organizado en módulos progresivos para que
+                  el estudiante avance desde el contexto cultural hasta la práctica, la entrega de
+                  evidencias y la certificación cuando corresponda.
                 </p>
+
+                <div className="course-outcomes-grid compact">
+                  {course.learningOutcomes.slice(0, 3).map((outcome) => (
+                    <article key={outcome}>
+                      <PlatformIcon name="check" size={20} />
+                      <span>{outcome}</span>
+                    </article>
+                  ))}
+                </div>
               </section>
 
               <section className="course-detail-block">

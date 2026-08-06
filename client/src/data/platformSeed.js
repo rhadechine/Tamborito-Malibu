@@ -3,65 +3,77 @@ import { foundationImages } from './foundationContent';
 export const seedUsers = [
   {
     id: 'usr-client-demo',
-    name: 'María José Martínez',
+    name: 'Estudiante Tamborito',
     email: 'cliente@tamborito.org',
     password: 'cliente123',
     role: 'client',
     status: 'active',
-    phone: '300 555 0142',
+    phone: '300 000 0000',
     city: 'Zambrano, Bolívar',
-    bio:
-      'Estudiante interesada en percusión tradicional y memoria musical del Caribe.',
-    createdAt: '2026-01-15T14:00:00.000Z',
+    bio: 'Estudiante vinculado a los procesos de formación cultural de Fundación Tamborito.',
+    createdAt: '2026-05-12T09:30:00.000Z',
   },
   {
-    id: 'usr-admin-demo',
+    id: 'usr-client-ana',
+    name: 'Ana María Torres',
+    email: 'ana.torres@example.com',
+    password: 'cliente123',
+    role: 'client',
+    status: 'active',
+    phone: '301 222 4455',
+    city: 'Cartagena, Bolívar',
+    bio: '',
+    createdAt: '2026-05-18T14:20:00.000Z',
+  },
+  {
+    id: 'usr-client-carlos',
+    name: 'Carlos Mendoza',
+    email: 'carlos.mendoza@example.com',
+    password: 'cliente123',
+    role: 'client',
+    status: 'inactive',
+    phone: '302 778 9900',
+    city: 'Zambrano, Bolívar',
+    bio: '',
+    createdAt: '2026-06-02T16:45:00.000Z',
+  },
+  {
+    id: 'usr-client-laura',
+    name: 'Laura Fernanda Ruiz',
+    email: 'laura.ruiz@example.com',
+    password: 'cliente123',
+    role: 'client',
+    status: 'active',
+    phone: '310 555 7878',
+    city: 'El Carmen de Bolívar',
+    bio: '',
+    createdAt: '2026-06-21T10:10:00.000Z',
+  },
+  {
+    id: 'usr-admin-tamborito',
     name: 'Administrador Tamborito',
     email: 'admin@tamborito.org',
     password: 'admin123',
     role: 'admin',
     status: 'active',
-    phone: '300 555 0100',
-    city: 'Zambrano, Bolívar',
-    bio:
-      'Responsable de la administración de contenidos y procesos formativos.',
-    createdAt: '2025-12-01T14:00:00.000Z',
-  },
-  {
-    id: 'usr-client-002',
-    name: 'Andrés Felipe Gómez',
-    email: 'andres@example.com',
-    password: 'demo123',
-    role: 'client',
-    status: 'active',
-    phone: '301 555 0112',
-    city: 'El Carmen de Bolívar',
-    bio: '',
-    createdAt: '2026-03-03T14:00:00.000Z',
-  },
-  {
-    id: 'usr-client-003',
-    name: 'Laura Sofía Pérez',
-    email: 'laura@example.com',
-    password: 'demo123',
-    role: 'client',
-    status: 'active',
-    phone: '302 555 0188',
-    city: 'Cartagena, Bolívar',
-    bio: '',
-    createdAt: '2026-04-10T14:00:00.000Z',
-  },
-  {
-    id: 'usr-client-004',
-    name: 'Carlos Eduardo Ruiz',
-    email: 'carlos@example.com',
-    password: 'demo123',
-    role: 'client',
-    status: 'inactive',
-    phone: '310 555 0190',
+    organization: 'foundation',
+    phone: '',
     city: 'Zambrano, Bolívar',
     bio: '',
-    createdAt: '2026-05-21T14:00:00.000Z',
+    createdAt: '2026-04-01T08:00:00.000Z',
+  },
+  {
+    id: 'usr-admin-malibu',
+    name: 'Administrador Malibú',
+    email: 'admin@malibu.org',
+    password: 'admin123',
+    role: 'admin',
+    status: 'active',
+    organization: 'museum',
+    phone: '',
+    city: 'Zambrano, Bolívar',
+    bio: '',
+    createdAt: '2026-04-01T08:00:00.000Z',
   },
 ];
 
@@ -69,57 +81,37 @@ export const seedInstructors = [
   {
     id: 'ins-ramses',
     name: 'Ramses Javith Hadechine Alvarez',
-    title: 'Licenciado en Música y fundador',
-    avatar: foundationImages.heroTamborito,
+    title: 'Licenciado en Música y fundador de Fundación Tamborito',
+    avatar:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80',
     bio:
-      'Director de procesos musicales, tradición oral y formación comunitaria de Fundación Tamborito.',
+      'Docente y gestor cultural orientado a la enseñanza de músicas tradicionales, percusión folklórica, gaitas y procesos de formación comunitaria.',
   },
   {
     id: 'ins-equipo',
-    name: 'Equipo pedagógico Tamborito',
+    name: 'Equipo Pedagógico Tamborito',
     title: 'Formadores culturales',
-    avatar: foundationImages.groupPortrait,
+    avatar:
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=80',
     bio:
-      'Equipo orientado al acompañamiento musical, evaluación práctica y trabajo con instituciones educativas.',
+      'Equipo encargado de apoyar rutas de aprendizaje, acompañamiento estudiantil, recursos pedagógicos y actividades prácticas.',
   },
 ];
-
-function createLesson({
-  id,
-  title,
-  type = 'video',
-  minutes = 10,
-  preview = false,
-  summary = '',
-  content = '',
-  resources = [],
-}) {
-  return {
-    id,
-    title,
-    type,
-    minutes,
-    preview,
-    summary,
-    content,
-    resources,
-  };
-}
 
 export const seedCourses = [
   {
     id: 'course-percusion',
-    slug: 'percusion-folklorica-del-caribe',
-    title: 'Percusión folklórica del Caribe',
+    slug: 'percusion-folklorica-caribe',
+    title: 'Percusión folklórica del Caribe colombiano',
     subtitle:
-      'Aprende los fundamentos del tambor desde la tradición de Zambrano.',
+      'Aprende bases rítmicas, escucha colectiva y práctica instrumental desde la tradición.',
     description:
-      'Ruta formativa para reconocer, interpretar y combinar patrones de tambor alegre, llamador y tambora mediante práctica guiada, escucha colectiva y ejercicios de ensamble.',
-    category: 'Música tradicional',
-    level: 'Inicial',
-    modality: 'Mixta',
+      'Curso introductorio para reconocer y practicar patrones básicos de percusión tradicional del Caribe colombiano. La ruta combina contexto cultural, técnica básica, ejercicios guiados, práctica individual y evidencia de avance.',
+    category: 'Percusión tradicional',
+    level: 'General',
+    modality: 'Virtual',
     language: 'Español',
-    durationLabel: '8 semanas',
+    durationLabel: '24 horas',
     price: 0,
     isFree: true,
     status: 'published',
@@ -127,845 +119,416 @@ export const seedCourses = [
     certificate: true,
     cover: foundationImages.youthPercussion,
     instructorId: 'ins-ramses',
-    studentsCount: 86,
-    rating: 4.9,
-    updatedAt: '2026-07-15T14:00:00.000Z',
+    studentsCount: 38,
+    rating: 4.8,
+    updatedAt: '2026-07-20T09:00:00.000Z',
     learningOutcomes: [
-      'Reconocer las funciones básicas de los tambores tradicionales.',
-      'Interpretar patrones de llamada, base y respuesta.',
-      'Participar en ejercicios de ensamble y escucha colectiva.',
-      'Relacionar la práctica musical con la memoria cultural del territorio.',
+      'Reconocer el papel del tambor dentro de la música tradicional del Caribe.',
+      'Identificar patrones rítmicos básicos y su relación con la práctica colectiva.',
+      'Registrar evidencias de práctica para acompañar el progreso del estudiante.',
     ],
     requirements: [
-      'No requiere experiencia previa.',
-      'Disposición para practicar de manera constante.',
+      'Disposición para practicar de forma constante.',
+      'Acceso a internet para consultar videos y materiales.',
+      'Instrumento propio o superficie de práctica cuando sea posible.',
     ],
     audience: [
-      'Niños y jóvenes',
-      'Familias',
-      'Personas interesadas en música tradicional',
+      'Niños, jóvenes y adultos interesados en música tradicional.',
+      'Estudiantes vinculados a procesos culturales.',
+      'Docentes o gestores que busquen material introductorio.',
     ],
     modules: [
       {
-        id: 'mod-perc-1',
-        title: 'Bienvenida y contexto cultural',
+        id: 'module-percusion-1',
+        title: 'Contexto y escucha',
         description:
-          'Introducción a la fundación, el territorio y la función social de la música.',
+          'Reconocimiento inicial del territorio sonoro, el papel del tambor y la importancia de la escucha colectiva.',
         lessons: [
-          createLesson({
-            id: 'lesson-perc-1',
-            title: 'Bienvenida a la ruta Tamborito',
+          {
+            id: 'lesson-percusion-1',
+            title: 'El tambor como memoria viva',
             type: 'video',
-            minutes: 8,
-            preview: true,
-            summary:
-              'Conoce el propósito del curso y su metodología.',
-            content:
-              'En esta clase se presenta la ruta, la forma de registrar avances y la relación entre música, identidad y comunidad.',
-          }),
-          createLesson({
-            id: 'lesson-perc-2',
-            title:
-              'La tradición musical de Zambrano',
-            type: 'reading',
-            minutes: 12,
-            preview: true,
-            summary:
-              'Territorio, memoria y transmisión cultural.',
-            content:
-              'La tradición musical se mantiene viva cuando se aprende, se comparte y se practica en comunidad.',
-            resources: [
-              {
-                id: 'res-contexto',
-                name:
-                  'Lectura de contexto cultural',
-                type: 'PDF',
-                size: '1.1 MB',
-              },
-            ],
-          }),
-          createLesson({
-            id: 'lesson-perc-3',
-            title: 'Diagnóstico inicial',
-            type: 'quiz',
-            minutes: 10,
-            summary:
-              'Reconoce conocimientos y experiencias previas.',
-            content:
-              'Responde una actividad corta para que el equipo pedagógico conozca tu punto de partida.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-perc-2',
-        title: 'Pulso, postura y coordinación',
-        description:
-          'Bases corporales y auditivas para comenzar a tocar.',
-        lessons: [
-          createLesson({
-            id: 'lesson-perc-4',
-            title: 'Postura y cuidado corporal',
             minutes: 14,
+            preview: true,
             summary:
-              'Ubicación del instrumento y movimientos seguros.',
+              'Introducción al valor cultural del tambor dentro de la tradición.',
             content:
-              'Aprende una postura cómoda y sostenible para practicar sin tensión.',
-          }),
-          createLesson({
-            id: 'lesson-perc-5',
-            title: 'Ejercicios de pulso',
-            type: 'practice',
-            minutes: 22,
-            summary:
-              'Práctica gradual con palmas, voz y tambor.',
-            content:
-              'Realiza tres secuencias de pulso y registra una evidencia corta.',
+              'En esta clase se presenta el tambor como instrumento de memoria, comunicación y encuentro comunitario. El estudiante debe observar cómo el ritmo se relaciona con la participación colectiva.',
+            videoUrl: 'https://www.youtube.com/watch?v=demo-percusion-1',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
             resources: [
               {
-                id: 'res-pdf-ritmos',
-                name:
-                  'Guía de patrones rítmicos',
+                id: 'res-percusion-1',
+                name: 'Guía de escucha inicial',
                 type: 'PDF',
-                size: '2.4 MB',
-              },
-              {
-                id: 'res-audio-llamados',
-                name:
-                  'Audios de llamada y respuesta',
-                type: 'Audio',
-                size: '18 MB',
+                size: '1.2 MB',
+                url: '',
               },
             ],
-          }),
-          createLesson({
-            id: 'lesson-perc-6',
-            title:
-              'Actividad de coordinación básica',
-            type: 'assignment',
-            minutes: 30,
+          },
+          {
+            id: 'lesson-percusion-2',
+            title: 'Pulso, acento y coordinación',
+            type: 'practice',
+            minutes: 18,
+            preview: false,
             summary:
-              'Entrega una evidencia en audio o video.',
+              'Ejercicios básicos para sostener pulso y acento en práctica individual.',
             content:
-              'Graba una secuencia de 45 segundos siguiendo el patrón propuesto.',
-          }),
+              'El estudiante debe practicar patrones sencillos de pulso y acento, manteniendo regularidad y atención al movimiento de las manos.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions:
+              'Graba una práctica breve de pulso y acento. El archivo puede ser audio o video.',
+            uploadEnabled: true,
+            resources: [
+              {
+                id: 'res-percusion-2',
+                name: 'Ejercicios de coordinación',
+                type: 'PDF',
+                size: '900 KB',
+                url: '',
+              },
+            ],
+          },
         ],
       },
       {
-        id: 'mod-perc-3',
-        title:
-          'Tambor alegre y llamada-respuesta',
+        id: 'module-percusion-2',
+        title: 'Patrones básicos',
         description:
-          'Patrones iniciales y comunicación dentro del ensamble.',
+          'Práctica de células rítmicas y construcción de secuencias sencillas.',
         lessons: [
-          createLesson({
-            id: 'lesson-perc-7',
-            title:
-              'Sonidos abiertos y cerrados',
-            minutes: 18,
+          {
+            id: 'lesson-percusion-3',
+            title: 'Primer patrón rítmico',
+            type: 'video',
+            minutes: 20,
+            preview: false,
             summary:
-              'Diferencia técnica y auditiva entre golpes básicos.',
+              'Demostración guiada de un patrón inicial de percusión.',
             content:
-              'Practica sonidos abiertos, secos y apoyados con control de intensidad.',
-          }),
-          createLesson({
-            id: 'lesson-perc-8',
-            title: 'Patrones de respuesta',
-            type: 'practice',
-            minutes: 26,
+              'La clase muestra cómo dividir el patrón por partes, repetirlo lentamente y luego unirlo con continuidad.',
+            videoUrl: 'https://www.youtube.com/watch?v=demo-percusion-2',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [],
+          },
+          {
+            id: 'lesson-percusion-4',
+            title: 'Evidencia de patrón básico',
+            type: 'assignment',
+            minutes: 25,
+            preview: false,
             summary:
-              'Responde a una llamada rítmica.',
+              'Entrega de una evidencia donde el estudiante aplique el patrón trabajado.',
             content:
-              'Escucha cada llamada y responde con el patrón indicado.',
-          }),
-          createLesson({
-            id: 'lesson-perc-9',
-            title: 'Evaluación del módulo',
+              'El estudiante debe presentar una evidencia breve aplicando el patrón rítmico estudiado durante el módulo.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions:
+              'Sube un video o audio de máximo tres minutos interpretando el patrón básico. Agrega una descripción breve de las dificultades encontradas.',
+            uploadEnabled: true,
+            resources: [],
+          },
+        ],
+      },
+      {
+        id: 'module-percusion-3',
+        title: 'Cierre y evaluación',
+        description:
+          'Evaluación de conceptos, revisión de avance y cierre de la ruta.',
+        lessons: [
+          {
+            id: 'lesson-percusion-5',
+            title: 'Evaluación de conceptos básicos',
             type: 'quiz',
             minutes: 15,
+            preview: false,
             summary:
-              'Evaluación de técnica, escucha y contexto cultural.',
+              'Preguntas de comprensión sobre pulso, acento, escucha y práctica colectiva.',
             content:
-              'Completa la evaluación para desbloquear el módulo de ensamble.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-perc-4',
-        title: 'Ensamble y muestra final',
-        description:
-          'Integración de aprendizajes y presentación de cierre.',
-        lessons: [
-          createLesson({
-            id: 'lesson-perc-10',
-            title: 'Cómo escuchar al grupo',
-            minutes: 16,
-            summary:
-              'Roles, señales y balance dentro del ensamble.',
-            content:
-              'Aprende a sostener tu patrón mientras escuchas a los demás instrumentos.',
-          }),
-          createLesson({
-            id: 'lesson-perc-11',
-            title: 'Ensayo guiado',
-            type: 'practice',
-            minutes: 40,
-            summary:
-              'Práctica completa con repertorio de cierre.',
-            content:
-              'Sigue la guía de ensayo y registra los aspectos que debes mejorar.',
-          }),
-          createLesson({
-            id: 'lesson-perc-12',
-            title: 'Entrega final',
-            type: 'assignment',
-            minutes: 45,
-            summary:
-              'Evidencia final y reflexión sobre el proceso.',
-            content:
-              'Sube tu evidencia final y una reflexión breve sobre lo aprendido.',
-          }),
+              'La evaluación permite verificar la comprensión de los conceptos trabajados durante el curso.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions:
+              '1. ¿Qué función cumple el pulso dentro de una interpretación colectiva?\n2. ¿Por qué es importante la escucha en un ensamble?\n3. Describe una dificultad de coordinación y cómo podrías mejorarla.',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [],
+          },
         ],
       },
     ],
   },
   {
     id: 'course-gaitas',
-    slug: 'gaitas-tradicionales',
-    title: 'Gaitas tradicionales',
+    slug: 'introduccion-gaitas-tradicionales',
+    title: 'Introducción a las gaitas tradicionales',
     subtitle:
-      'Respiración, digitación, repertorio y ensamble comunitario.',
+      'Reconoce el sonido, estructura y contexto cultural de las gaitas tradicionales.',
     description:
-      'Curso de iniciación a la gaita tradicional que combina técnica instrumental, escucha, memoria sonora y comprensión del significado cultural de cada pieza.',
-    category: 'Instrumentos de viento',
-    level: 'Inicial',
-    modality: 'Mixta',
-    language: 'Español',
-    durationLabel: '10 semanas',
-    price: 0,
-    isFree: true,
-    status: 'published',
-    featured: true,
-    certificate: true,
-    cover: foundationImages.childrenGaitas,
-    instructorId: 'ins-equipo',
-    studentsCount: 54,
-    rating: 4.8,
-    updatedAt: '2026-07-08T14:00:00.000Z',
-    learningOutcomes: [
-      'Aplicar ejercicios básicos de respiración y digitación.',
-      'Interpretar melodías tradicionales de nivel inicial.',
-      'Comprender el papel de la gaita dentro del conjunto musical.',
-    ],
-    requirements: [
-      'Contar con una gaita o acceso a una durante las prácticas.',
-    ],
-    audience: [
-      'Estudiantes principiantes',
-      'Músicos comunitarios',
-      'Docentes culturales',
-    ],
-    modules: [
-      {
-        id: 'mod-gaita-1',
-        title: 'Conociendo la gaita',
-        description:
-          'Partes, cuidado e historia del instrumento.',
-        lessons: [
-          createLesson({
-            id: 'lesson-gaita-1',
-            title:
-              'Historia y función cultural',
-            minutes: 12,
-            preview: true,
-            summary:
-              'Origen y presencia de la gaita.',
-            content:
-              'Introducción histórica y cultural al instrumento.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-2',
-            title: 'Partes y cuidado',
-            type: 'reading',
-            minutes: 10,
-            preview: true,
-            summary:
-              'Conoce la estructura del instrumento.',
-            content:
-              'Recomendaciones para manipulación y mantenimiento.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-gaita-2',
-        title: 'Respiración y sonido',
-        description:
-          'Ejercicios iniciales para controlar el aire.',
-        lessons: [
-          createLesson({
-            id: 'lesson-gaita-3',
-            title:
-              'Respiración diafragmática',
-            minutes: 16,
-            summary:
-              'Práctica guiada de respiración.',
-            content:
-              'Aprende a controlar el aire de forma estable.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-4',
-            title: 'Primeros sonidos',
-            type: 'practice',
-            minutes: 25,
-            summary:
-              'Emisión y estabilidad del sonido.',
-            content:
-              'Realiza ejercicios de sonido sostenido.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-5',
-            title: 'Evidencia de sonido',
-            type: 'assignment',
-            minutes: 25,
-            summary: 'Entrega práctica.',
-            content:
-              'Graba tres sonidos estables.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-gaita-3',
-        title: 'Digitación y melodía',
-        description:
-          'Escalas y frases tradicionales.',
-        lessons: [
-          createLesson({
-            id: 'lesson-gaita-6',
-            title: 'Posiciones básicas',
-            minutes: 18,
-            summary: 'Digitación inicial.',
-            content:
-              'Práctica de posiciones y cambios.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-7',
-            title: 'Frase melódica inicial',
-            type: 'practice',
-            minutes: 30,
-            summary:
-              'Aplicación de una melodía tradicional.',
-            content:
-              'Aprende una frase musical completa.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-8',
-            title: 'Evaluación auditiva',
-            type: 'quiz',
-            minutes: 12,
-            summary:
-              'Reconocimiento de frases y posiciones.',
-            content:
-              'Identifica patrones y cambios de digitación.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-gaita-4',
-        title: 'Ensamble final',
-        description:
-          'Integración con percusión y canto.',
-        lessons: [
-          createLesson({
-            id: 'lesson-gaita-9',
-            title: 'Escucha del ensamble',
-            minutes: 14,
-            summary:
-              'Relación entre instrumentos.',
-            content:
-              'Comprende señales, entradas y cierres.',
-          }),
-          createLesson({
-            id: 'lesson-gaita-10',
-            title: 'Muestra final',
-            type: 'assignment',
-            minutes: 45,
-            summary:
-              'Presentación de cierre.',
-            content:
-              'Entrega una interpretación final.',
-          }),
-        ],
-      },
-    ],
-  },
-  {
-    id: 'course-aprendizaje',
-    slug: 'aprendizaje-sonoro',
-    title: 'Aprendizaje sonoro',
-    subtitle:
-      'Música y neuroeducación para fortalecer atención, memoria y coordinación.',
-    description:
-      'Programa orientado a docentes, familias y formadores que desean aplicar experiencias musicales como mediadoras del aprendizaje y el desarrollo integral.',
-    category: 'Neuroeducación',
-    level: 'Formativo',
+      'Ruta introductoria para comprender la importancia de las gaitas dentro de las músicas tradicionales, sus partes principales, principios de respiración, escucha y acompañamiento.',
+    category: 'Gaitas',
+    level: 'General',
     modality: 'Virtual',
     language: 'Español',
-    durationLabel: '12 semanas',
-    price: 120000,
+    durationLabel: '18 horas',
+    price: 75000,
     isFree: false,
     status: 'published',
     featured: true,
     certificate: true,
-    cover: foundationImages.schoolAlliance,
+    cover: foundationImages.childrenGaitas,
     instructorId: 'ins-ramses',
-    studentsCount: 39,
-    rating: 4.9,
-    updatedAt: '2026-07-20T14:00:00.000Z',
+    studentsCount: 24,
+    rating: 4.7,
+    updatedAt: '2026-07-18T11:40:00.000Z',
     learningOutcomes: [
-      'Diseñar ejercicios sonoros con propósito pedagógico.',
-      'Aplicar estrategias para atención, memoria y coordinación.',
-      'Documentar avances mediante actividades y evidencias.',
+      'Identificar elementos básicos de las gaitas tradicionales.',
+      'Comprender el papel melódico de la gaita dentro del conjunto.',
+      'Desarrollar ejercicios iniciales de escucha, respiración y coordinación.',
     ],
     requirements: [
-      'Interés en educación, cultura o procesos comunitarios.',
+      'Interés por la música tradicional.',
+      'Acceso a internet.',
+      'Gaita o instrumento de práctica cuando esté disponible.',
     ],
     audience: [
-      'Docentes',
-      'Formadores culturales',
-      'Familias',
-      'Líderes comunitarios',
+      'Estudiantes nuevos de música tradicional.',
+      'Integrantes de procesos culturales.',
+      'Personas interesadas en gaitas y música de tradición oral.',
     ],
     modules: [
       {
-        id: 'mod-apr-1',
-        title:
-          'Fundamentos de aprendizaje sonoro',
+        id: 'module-gaitas-1',
+        title: 'Reconocimiento del instrumento',
         description:
-          'Conceptos y metodología general.',
+          'Introducción al sonido, función y estructura de la gaita.',
         lessons: [
-          createLesson({
-            id: 'lesson-apr-1',
-            title: 'Música como mediadora',
-            minutes: 15,
+          {
+            id: 'lesson-gaitas-1',
+            title: 'La gaita en la tradición musical',
+            type: 'video',
+            minutes: 16,
             preview: true,
             summary:
-              'Principios del enfoque.',
+              'Contexto cultural y sonoro de la gaita tradicional.',
             content:
-              'Presentación del aprendizaje sonoro y su aplicación.',
-          }),
-          createLesson({
-            id: 'lesson-apr-2',
-            title: 'Atención y escucha',
+              'La clase presenta la gaita como instrumento melódico y explica su relación con el conjunto tradicional.',
+            videoUrl: 'https://www.youtube.com/watch?v=demo-gaitas-1',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [
+              {
+                id: 'res-gaitas-1',
+                name: 'Ficha introductoria sobre gaitas',
+                type: 'PDF',
+                size: '1 MB',
+                url: '',
+              },
+            ],
+          },
+          {
+            id: 'lesson-gaitas-2',
+            title: 'Partes y cuidado básico',
             type: 'reading',
-            minutes: 14,
-            preview: true,
-            summary:
-              'Escucha activa y concentración.',
-            content:
-              'Lectura introductoria con actividad de observación.',
-          }),
-          createLesson({
-            id: 'lesson-apr-3',
-            title: 'Actividad diagnóstica',
-            type: 'quiz',
             minutes: 12,
+            preview: false,
             summary:
-              'Punto de partida pedagógico.',
+              'Lectura breve sobre partes principales y cuidado del instrumento.',
             content:
-              'Diagnóstico de prácticas educativas.',
-          }),
+              'La lectura explica partes generales de la gaita, recomendaciones de cuidado y relación entre técnica e instrumento.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [],
+          },
         ],
       },
       {
-        id: 'mod-apr-2',
-        title: 'Memoria auditiva',
+        id: 'module-gaitas-2',
+        title: 'Respiración y escucha',
         description:
-          'Secuencias, repetición y evocación.',
+          'Ejercicios iniciales de respiración, emisión y escucha del conjunto.',
         lessons: [
-          createLesson({
-            id: 'lesson-apr-4',
-            title: 'Secuencias sonoras',
-            minutes: 18,
-            summary:
-              'Diseño de secuencias.',
-            content:
-              'Ejemplos para diferentes edades.',
-          }),
-          createLesson({
-            id: 'lesson-apr-5',
-            title: 'Laboratorio de memoria',
+          {
+            id: 'lesson-gaitas-3',
+            title: 'Ejercicio inicial de respiración',
             type: 'practice',
-            minutes: 28,
+            minutes: 22,
+            preview: false,
             summary:
-              'Actividad pedagógica aplicada.',
+              'Práctica guiada para controlar aire y duración del sonido.',
             content:
-              'Construye y prueba una secuencia.',
-          }),
-          createLesson({
-            id: 'lesson-apr-6',
-            title: 'Evidencia pedagógica',
-            type: 'assignment',
-            minutes: 35,
-            summary:
-              'Registro de aplicación.',
-            content:
-              'Documenta una experiencia breve.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-apr-3',
-        title: 'Coordinación y ritmo',
-        description:
-          'Cuerpo, pulso y organización motriz.',
-        lessons: [
-          createLesson({
-            id: 'lesson-apr-7',
-            title: 'Ritmo y movimiento',
-            minutes: 20,
-            summary:
-              'Coordinación mediante pulso.',
-            content:
-              'Actividades de cuerpo y ritmo.',
-          }),
-          createLesson({
-            id: 'lesson-apr-8',
-            title: 'Diseño de una sesión',
-            type: 'practice',
-            minutes: 30,
-            summary:
-              'Planeación aplicada.',
-            content:
-              'Diseña una sesión de 20 minutos.',
-          }),
-          createLesson({
-            id: 'lesson-apr-9',
-            title: 'Evaluación del módulo',
-            type: 'quiz',
-            minutes: 15,
-            summary:
-              'Verificación conceptual.',
-            content:
-              'Cuestionario del módulo.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-apr-4',
-        title: 'Proyecto final',
-        description:
-          'Aplicación completa y documentación.',
-        lessons: [
-          createLesson({
-            id: 'lesson-apr-10',
-            title:
-              'Estructura del proyecto',
-            minutes: 14,
-            summary:
-              'Criterios y entregables.',
-            content:
-              'Orientación para el proyecto final.',
-          }),
-          createLesson({
-            id: 'lesson-apr-11',
-            title: 'Acompañamiento',
-            type: 'reading',
-            minutes: 10,
-            summary:
-              'Lista de verificación.',
-            content:
-              'Revisa los criterios antes de entregar.',
-          }),
-          createLesson({
-            id: 'lesson-apr-12',
-            title: 'Entrega final',
-            type: 'assignment',
-            minutes: 60,
-            summary:
-              'Proyecto aplicado.',
-            content:
-              'Entrega el diseño y la evidencia de tu experiencia.',
-          }),
+              'El estudiante debe practicar respiración constante, atención al sonido y control básico del aire.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions:
+              'Entrega una grabación breve aplicando el ejercicio de respiración propuesto.',
+            uploadEnabled: true,
+            resources: [],
+          },
         ],
       },
     ],
   },
   {
     id: 'course-cantos',
-    slug:
-      'cantos-de-pajarito-y-tradicion-oral',
-    title:
-      'Cantos de pajarito y tradición oral',
+    slug: 'cantos-de-pajarito-y-tradicion-oral',
+    title: 'Cantos de pajarito y tradición oral',
     subtitle:
-      'Voz, memoria, repertorio y expresión colectiva.',
+      'Explora repertorios, relatos y memoria sonora transmitida entre generaciones.',
     description:
-      'Explora una expresión musical autóctona mediante repertorio, escucha, tradición oral y ejercicios de creación colectiva.',
-    category: 'Canto y memoria',
-    level: 'Inicial',
-    modality: 'Presencial',
+      'Curso orientado a reconocer el valor de los cantos tradicionales, la oralidad y los repertorios comunitarios como parte de la memoria cultural del territorio.',
+    category: 'Canto tradicional',
+    level: 'General',
+    modality: 'Virtual',
     language: 'Español',
-    durationLabel: '6 semanas',
-    price: 0,
-    isFree: true,
-    status: 'published',
-    featured: false,
-    certificate: true,
-    cover: foundationImages.fluteClass,
-    instructorId: 'ins-equipo',
-    studentsCount: 31,
-    rating: 4.7,
-    updatedAt: '2026-06-28T14:00:00.000Z',
-    learningOutcomes: [
-      'Reconocer repertorios tradicionales.',
-      'Fortalecer la expresión vocal y la memoria oral.',
-    ],
-    requirements: [
-      'No requiere experiencia previa.',
-    ],
-    audience: [
-      'Comunidad general',
-      'Niños y jóvenes',
-    ],
-    modules: [
-      {
-        id: 'mod-canto-1',
-        title: 'Oralidad y territorio',
-        description:
-          'Contexto y escucha.',
-        lessons: [
-          createLesson({
-            id: 'lesson-canto-1',
-            title:
-              'Introducción a los cantos',
-            minutes: 12,
-            preview: true,
-            summary:
-              'Contexto general de la tradición.',
-            content:
-              'Presentación de los cantos y su relación con el territorio.',
-          }),
-          createLesson({
-            id: 'lesson-canto-2',
-            title: 'Escucha guiada',
-            type: 'practice',
-            minutes: 20,
-            summary:
-              'Reconocimiento auditivo.',
-            content:
-              'Actividad de escucha y memoria.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-canto-2',
-        title: 'Voz y repertorio',
-        description:
-          'Respiración, fraseo y memoria.',
-        lessons: [
-          createLesson({
-            id: 'lesson-canto-3',
-            title: 'Calentamiento vocal',
-            minutes: 14,
-            summary:
-              'Preparación vocal.',
-            content:
-              'Ejercicios de respiración y voz.',
-          }),
-          createLesson({
-            id: 'lesson-canto-4',
-            title: 'Repertorio inicial',
-            type: 'practice',
-            minutes: 25,
-            summary:
-              'Aprendizaje de una pieza.',
-            content:
-              'Práctica guiada del repertorio.',
-          }),
-          createLesson({
-            id: 'lesson-canto-5',
-            title: 'Muestra final',
-            type: 'assignment',
-            minutes: 35,
-            summary:
-              'Entrega colectiva.',
-            content:
-              'Presenta la evidencia de cierre.',
-          }),
-        ],
-      },
-    ],
-  },
-  {
-    id: 'course-ensamble',
-    slug: 'ensamble-cultural-tamborito',
-    title: 'Ensamble cultural Tamborito',
-    subtitle:
-      'Montaje de repertorio, práctica escénica y presentación final.',
-    description:
-      'Proceso para estudiantes con bases musicales que desean fortalecer interpretación colectiva, presencia escénica y montaje de repertorio tradicional.',
-    category: 'Práctica escénica',
-    level: 'Intermedio',
-    modality: 'Presencial',
-    language: 'Español',
-    durationLabel: '16 semanas',
-    price: 180000,
+    durationLabel: '16 horas',
+    price: 60000,
     isFree: false,
     status: 'published',
     featured: false,
     certificate: true,
-    cover: foundationImages.riverEnsemble,
-    instructorId: 'ins-ramses',
-    studentsCount: 24,
-    rating: 4.9,
-    updatedAt: '2026-07-02T14:00:00.000Z',
+    cover: foundationImages.groupPortrait,
+    instructorId: 'ins-equipo',
+    studentsCount: 19,
+    rating: 4.6,
+    updatedAt: '2026-07-10T15:10:00.000Z',
     learningOutcomes: [
-      'Montar repertorio tradicional.',
-      'Fortalecer escucha y práctica escénica.',
+      'Reconocer el valor cultural del canto tradicional.',
+      'Relacionar oralidad, memoria y práctica musical.',
+      'Preparar una evidencia vocal o documental del repertorio trabajado.',
     ],
     requirements: [
-      'Bases instrumentales o vocales.',
-      'Disponibilidad para ensayos presenciales.',
+      'Disposición para escuchar y practicar repertorios.',
+      'Acceso a internet.',
     ],
     audience: [
-      'Estudiantes intermedios',
-      'Integrantes de agrupaciones',
+      'Estudiantes interesados en canto tradicional.',
+      'Personas vinculadas a procesos comunitarios.',
+      'Docentes de cultura o música.',
     ],
     modules: [
       {
-        id: 'mod-ens-1',
-        title: 'Diagnóstico y repertorio',
+        id: 'module-cantos-1',
+        title: 'Memoria oral y repertorio',
         description:
-          'Asignación de roles y selección de piezas.',
+          'Aproximación al canto tradicional como práctica comunitaria.',
         lessons: [
-          createLesson({
-            id: 'lesson-ens-1',
-            title:
-              'Diagnóstico de ensamble',
-            type: 'assignment',
-            minutes: 30,
+          {
+            id: 'lesson-cantos-1',
+            title: 'La voz como memoria cultural',
+            type: 'video',
+            minutes: 13,
             preview: true,
             summary:
-              'Evidencia instrumental inicial.',
+              'Introducción al canto tradicional y su relación con la memoria.',
             content:
-              'Presenta una muestra breve de tu experiencia.',
-          }),
-          createLesson({
-            id: 'lesson-ens-2',
-            title:
-              'Selección de repertorio',
-            minutes: 18,
-            summary:
-              'Criterios de montaje.',
-            content:
-              'Cómo elegir y organizar las piezas.',
-          }),
-        ],
-      },
-      {
-        id: 'mod-ens-2',
-        title: 'Montaje y presentación',
-        description:
-          'Ensayos y muestra de cierre.',
-        lessons: [
-          createLesson({
-            id: 'lesson-ens-3',
-            title:
-              'Ensayo por secciones',
-            type: 'practice',
-            minutes: 45,
-            summary:
-              'Trabajo por familias instrumentales.',
-            content:
-              'Realiza el ensayo siguiendo la guía.',
-          }),
-          createLesson({
-            id: 'lesson-ens-4',
-            title: 'Ensayo general',
-            type: 'practice',
-            minutes: 60,
-            summary:
-              'Integración completa.',
-            content:
-              'Ensayo general de repertorio.',
-          }),
-          createLesson({
-            id: 'lesson-ens-5',
-            title: 'Presentación final',
+              'La clase presenta el valor de la voz en la transmisión de memoria, relatos y prácticas comunitarias.',
+            videoUrl: 'https://www.youtube.com/watch?v=demo-cantos-1',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [],
+          },
+          {
+            id: 'lesson-cantos-2',
+            title: 'Registro de repertorio',
             type: 'assignment',
-            minutes: 60,
+            minutes: 24,
+            preview: false,
             summary:
-              'Muestra pública.',
+              'Actividad para documentar o interpretar un canto trabajado.',
             content:
-              'Presentación de cierre del proceso.',
-          }),
+              'El estudiante debe preparar una evidencia relacionada con un canto, relato o repertorio tradicional.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions:
+              'Sube un audio, video o documento donde registres el repertorio trabajado y explica su contexto.',
+            uploadEnabled: true,
+            resources: [],
+          },
         ],
       },
     ],
   },
   {
-    id: 'course-docentes',
-    slug:
-      'herramientas-culturales-para-docentes',
-    title:
-      'Herramientas culturales para docentes',
+    id: 'course-neuroeducacion',
+    slug: 'neuroeducacion-aplicada-a-procesos-culturales',
+    title: 'Neuroeducación aplicada a procesos culturales',
     subtitle:
-      'Recursos musicales y patrimoniales para contextos educativos.',
+      'Herramientas para acompañar aprendizaje musical, atención y memoria desde la práctica pedagógica.',
     description:
-      'Curso breve para diseñar actividades culturales aplicables en aula, proyectos institucionales y procesos comunitarios.',
-    category: 'Docentes y aliados',
-    level: 'Complementario',
+      'Curso dirigido a formadores y gestores culturales que necesitan organizar actividades de aprendizaje musical con criterios de atención, memoria, motivación y seguimiento.',
+    category: 'Pedagogía cultural',
+    level: 'General',
     modality: 'Virtual',
     language: 'Español',
-    durationLabel: '4 semanas',
-    price: 90000,
+    durationLabel: '20 horas',
+    price: 95000,
     isFree: false,
     status: 'draft',
     featured: false,
     certificate: true,
     cover: foundationImages.percussionClass,
-    instructorId: 'ins-equipo',
+    instructorId: 'ins-ramses',
     studentsCount: 0,
     rating: 0,
-    updatedAt: '2026-07-24T14:00:00.000Z',
+    updatedAt: '2026-07-05T18:00:00.000Z',
     learningOutcomes: [
-      'Diseñar actividades culturales para el aula.',
-      'Integrar música, territorio y memoria.',
+      'Diseñar actividades de aprendizaje con instrucciones claras.',
+      'Relacionar atención, repetición y memoria con práctica musical.',
+      'Plantear estrategias de seguimiento del progreso estudiantil.',
     ],
     requirements: [
-      'Ser docente, formador o líder comunitario.',
+      'Experiencia básica en enseñanza o gestión cultural.',
+      'Interés por procesos educativos.',
     ],
     audience: [
-      'Docentes',
-      'Bibliotecarios',
-      'Gestores culturales',
+      'Docentes.',
+      'Gestores culturales.',
+      'Monitores de formación musical.',
     ],
     modules: [
       {
-        id: 'mod-doc-1',
-        title: 'Cultura y aula',
+        id: 'module-neuro-1',
+        title: 'Principios iniciales',
         description:
-          'Principios de integración curricular.',
+          'Conceptos básicos para aplicar neuroeducación en procesos culturales.',
         lessons: [
-          createLesson({
-            id: 'lesson-doc-1',
-            title: 'Diagnóstico cultural',
+          {
+            id: 'lesson-neuro-1',
+            title: 'Atención y práctica cultural',
             type: 'reading',
             minutes: 15,
-            preview: true,
+            preview: false,
             summary:
-              'Lectura del contexto.',
+              'Lectura base sobre atención, motivación y aprendizaje.',
             content:
-              'Herramienta de diagnóstico cultural.',
-          }),
-          createLesson({
-            id: 'lesson-doc-2',
-            title: 'Diseño de actividad',
-            type: 'assignment',
-            minutes: 35,
-            summary:
-              'Aplicación práctica.',
-            content:
-              'Diseña una actividad cultural para tu contexto.',
-          }),
+              'El aprendizaje cultural necesita rutinas claras, participación activa, repetición y retroalimentación.',
+            videoUrl: '',
+            readingUrl: '',
+            quizQuestions: '',
+            assignmentInstructions: '',
+            uploadEnabled: false,
+            resources: [],
+          },
         ],
       },
     ],
@@ -974,209 +537,214 @@ export const seedCourses = [
 
 export const seedEnrollments = [
   {
-    id: 'enr-demo-perc',
+    id: 'enr-demo-percusion',
     userId: 'usr-client-demo',
     courseId: 'course-percusion',
     status: 'active',
-    enrolledAt: '2026-05-10T14:00:00.000Z',
-    lastLessonId: 'lesson-perc-8',
+    enrolledAt: '2026-07-01T13:20:00.000Z',
+    lastLessonId: 'lesson-percusion-3',
     completedLessons: [
-      'lesson-perc-1',
-      'lesson-perc-2',
-      'lesson-perc-3',
-      'lesson-perc-4',
-      'lesson-perc-5',
-      'lesson-perc-6',
-      'lesson-perc-7',
+      'lesson-percusion-1',
+      'lesson-percusion-2',
     ],
-    grade: 4.6,
-    attendance: 88,
+    grade: null,
     source: 'free',
-  },
-  {
-    id: 'enr-demo-apr',
-    userId: 'usr-client-demo',
-    courseId: 'course-aprendizaje',
-    status: 'active',
-    enrolledAt: '2026-06-18T14:00:00.000Z',
-    lastLessonId: 'lesson-apr-5',
-    completedLessons: [
-      'lesson-apr-1',
-      'lesson-apr-2',
-      'lesson-apr-3',
-      'lesson-apr-4',
+    evidence: [
+      {
+        id: 'evi-demo-1',
+        lessonId: 'lesson-percusion-2',
+        lessonTitle: 'Pulso, acento y coordinación',
+        fileName: 'practica-pulso-estudiante.mp4',
+        fileType: 'video/mp4',
+        fileSize: 5242880,
+        description:
+          'Práctica de coordinación inicial con pulso sostenido.',
+        submittedAt: '2026-07-04T18:45:00.000Z',
+        status: 'submitted',
+      },
     ],
-    grade: 4.2,
-    attendance: 100,
-    source: 'purchase',
   },
   {
-    id: 'enr-demo-gaita',
+    id: 'enr-demo-gaitas',
     userId: 'usr-client-demo',
     courseId: 'course-gaitas',
-    status: 'completed',
-    enrolledAt: '2026-02-02T14:00:00.000Z',
-    completedAt: '2026-05-02T14:00:00.000Z',
-    lastLessonId: 'lesson-gaita-10',
-    completedLessons: [
-      'lesson-gaita-1',
-      'lesson-gaita-2',
-      'lesson-gaita-3',
-      'lesson-gaita-4',
-      'lesson-gaita-5',
-      'lesson-gaita-6',
-      'lesson-gaita-7',
-      'lesson-gaita-8',
-      'lesson-gaita-9',
-      'lesson-gaita-10',
-    ],
-    grade: 4.8,
-    attendance: 96,
-    source: 'free',
-    certificateId: 'cert-gaita-demo',
-  },
-  {
-    id: 'enr-andres-perc',
-    userId: 'usr-client-002',
-    courseId: 'course-percusion',
     status: 'active',
-    enrolledAt: '2026-04-22T14:00:00.000Z',
-    lastLessonId: 'lesson-perc-5',
-    completedLessons: [
-      'lesson-perc-1',
-      'lesson-perc-2',
-      'lesson-perc-3',
-      'lesson-perc-4',
-    ],
-    grade: 4.0,
-    attendance: 82,
-    source: 'free',
-  },
-  {
-    id: 'enr-laura-apr',
-    userId: 'usr-client-003',
-    courseId: 'course-aprendizaje',
-    status: 'active',
-    enrolledAt: '2026-06-25T14:00:00.000Z',
-    lastLessonId: 'lesson-apr-3',
-    completedLessons: [
-      'lesson-apr-1',
-      'lesson-apr-2',
-    ],
-    grade: 4.4,
-    attendance: 100,
+    enrolledAt: '2026-07-08T09:10:00.000Z',
+    lastLessonId: 'lesson-gaitas-2',
+    completedLessons: ['lesson-gaitas-1'],
+    grade: null,
     source: 'purchase',
+    orderId: 'ORD-100241',
+    evidence: [],
+  },
+  {
+    id: 'enr-ana-percusion',
+    userId: 'usr-client-ana',
+    courseId: 'course-percusion',
+    status: 'completed',
+    enrolledAt: '2026-06-18T12:00:00.000Z',
+    completedAt: '2026-07-12T12:00:00.000Z',
+    lastLessonId: 'lesson-percusion-5',
+    completedLessons: [
+      'lesson-percusion-1',
+      'lesson-percusion-2',
+      'lesson-percusion-3',
+      'lesson-percusion-4',
+      'lesson-percusion-5',
+    ],
+    grade: 94,
+    source: 'free',
+    evidence: [
+      {
+        id: 'evi-ana-1',
+        lessonId: 'lesson-percusion-4',
+        lessonTitle: 'Evidencia de patrón básico',
+        fileName: 'patron-basico-ana.mp4',
+        fileType: 'video/mp4',
+        fileSize: 7300000,
+        description:
+          'Evidencia final de patrón básico trabajado durante el módulo.',
+        submittedAt: '2026-07-10T17:20:00.000Z',
+        status: 'submitted',
+      },
+    ],
+  },
+  {
+    id: 'enr-laura-cantos',
+    userId: 'usr-client-laura',
+    courseId: 'course-cantos',
+    status: 'active',
+    enrolledAt: '2026-07-15T15:35:00.000Z',
+    lastLessonId: 'lesson-cantos-1',
+    completedLessons: [],
+    grade: null,
+    source: 'purchase',
+    orderId: 'ORD-100312',
+    evidence: [],
   },
 ];
 
 export const seedOrders = [
   {
-    id: 'ORD-10021',
+    id: 'ORD-100241',
     userId: 'usr-client-demo',
     items: [
       {
-        courseId: 'course-aprendizaje',
-        title: 'Aprendizaje sonoro',
-        price: 120000,
+        courseId: 'course-gaitas',
+        title: 'Introducción a las gaitas tradicionales',
+        price: 75000,
       },
     ],
-    subtotal: 120000,
-    total: 120000,
+    subtotal: 75000,
+    total: 75000,
     paymentMethod: 'PSE',
     paymentStatus: 'approved',
     orderStatus: 'completed',
-    createdAt: '2026-06-18T14:00:00.000Z',
-    transactionReference: 'PSE-783101',
+    createdAt: '2026-07-08T09:05:00.000Z',
+    transactionReference: 'PSE-7788123',
   },
   {
-    id: 'ORD-10019',
-    userId: 'usr-client-003',
+    id: 'ORD-100312',
+    userId: 'usr-client-laura',
     items: [
       {
-        courseId: 'course-aprendizaje',
-        title: 'Aprendizaje sonoro',
-        price: 120000,
+        courseId: 'course-cantos',
+        title: 'Cantos de pajarito y tradición oral',
+        price: 60000,
       },
     ],
-    subtotal: 120000,
-    total: 120000,
-    paymentMethod: 'Tarjeta',
+    subtotal: 60000,
+    total: 60000,
+    paymentMethod: 'PSE',
     paymentStatus: 'approved',
     orderStatus: 'completed',
-    createdAt: '2026-06-25T14:00:00.000Z',
-    transactionReference: 'CARD-553010',
+    createdAt: '2026-07-15T15:30:00.000Z',
+    transactionReference: 'PSE-8844120',
   },
   {
-    id: 'ORD-10018',
-    userId: 'usr-client-002',
+    id: 'ORD-100180',
+    userId: 'usr-client-carlos',
     items: [
       {
-        courseId: 'course-ensamble',
-        title:
-          'Ensamble cultural Tamborito',
-        price: 180000,
+        courseId: 'course-gaitas',
+        title: 'Introducción a las gaitas tradicionales',
+        price: 75000,
       },
     ],
-    subtotal: 180000,
-    total: 180000,
+    subtotal: 75000,
+    total: 75000,
     paymentMethod: 'PSE',
     paymentStatus: 'pending',
     orderStatus: 'pending',
-    createdAt: '2026-06-12T14:00:00.000Z',
-    transactionReference: 'PSE-771202',
+    createdAt: '2026-06-28T11:10:00.000Z',
+    transactionReference: 'PSE-6500210',
   },
 ];
 
 export const seedCertificates = [
   {
-    id: 'cert-gaita-demo',
-    userId: 'usr-client-demo',
-    courseId: 'course-gaitas',
-    code: 'FT-GAI-2026-0048',
-    issuedAt: '2026-05-03T14:00:00.000Z',
+    id: 'cert-ana-percusion',
+    userId: 'usr-client-ana',
+    courseId: 'course-percusion',
+    code: 'FT-PER-2026-0001',
+    issuedAt: '2026-07-12T12:30:00.000Z',
   },
 ];
 
 export const seedNotifications = [
   {
-    id: 'not-1',
+    id: 'not-demo-1',
     userId: 'usr-client-demo',
-    title: 'Nueva actividad disponible',
+    title: 'Inscripción confirmada',
     message:
-      'Ya puedes realizar la práctica de patrones de respuesta.',
+      'Tu curso de Percusión folklórica del Caribe colombiano está disponible en el campus.',
     type: 'course',
     read: false,
-    createdAt: '2026-07-26T13:00:00.000Z',
+    createdAt: '2026-07-01T13:21:00.000Z',
   },
   {
-    id: 'not-2',
-    userId: 'usr-client-demo',
-    title: 'Certificado disponible',
-    message:
-      'Tu constancia de Gaitas tradicionales está lista.',
-    type: 'certificate',
-    read: false,
-    createdAt: '2026-07-24T13:00:00.000Z',
-  },
-  {
-    id: 'not-3',
+    id: 'not-demo-2',
     userId: 'usr-client-demo',
     title: 'Pago aprobado',
     message:
-      'La compra de Aprendizaje sonoro fue confirmada.',
+      'La compra ORD-100241 fue aprobada por PSE. El curso ya está disponible.',
     type: 'order',
     read: true,
-    createdAt: '2026-06-18T14:05:00.000Z',
+    createdAt: '2026-07-08T09:08:00.000Z',
+  },
+  {
+    id: 'not-demo-3',
+    userId: 'usr-client-demo',
+    title: 'Evidencia entregada',
+    message:
+      'Se registró la evidencia de Pulso, acento y coordinación.',
+    type: 'course',
+    read: false,
+    createdAt: '2026-07-04T18:46:00.000Z',
+  },
+  {
+    id: 'not-ana-1',
+    userId: 'usr-client-ana',
+    title: 'Certificado disponible',
+    message:
+      'Completaste Percusión folklórica del Caribe colombiano. Tu certificado ya está disponible.',
+    type: 'certificate',
+    read: false,
+    createdAt: '2026-07-12T12:31:00.000Z',
   },
 ];
 
 export const seedSettings = {
-  organizationName: 'Fundación Tamborito',
-  supportEmail: 'contacto@tamborito.org',
-  supportPhone: '300 555 0100',
+  supportEmail: 'soporte@fundaciontamborito.org',
+  supportPhone: '+57 300 000 0000',
+  businessHours: 'Lunes a viernes, 8:00 a.m. - 5:00 p.m.',
+  evidenceEmail: 'academico@fundaciontamborito.org',
   currency: 'COP',
   defaultPaymentMethod: 'PSE',
-  certificatesEnabled: true,
+  donationMessage:
+    'Cada aporte fortalece los procesos de formación musical, memoria cultural y participación comunitaria.',
+  privacyPolicyUrl: '/politicas-privacidad',
   publicRegistration: true,
+  certificatesEnabled: true,
   maintenanceMode: false,
 };

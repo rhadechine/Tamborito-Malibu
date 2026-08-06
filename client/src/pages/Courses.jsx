@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PageShell from '../components/PageShell';
 import FoundationFooter from '../components/FoundationFooter';
 import CourseCatalogCard from '../components/CourseCatalogCard';
@@ -13,7 +13,6 @@ export default function Courses() {
   const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
-
   const { user } = useAuth();
   const { addCourse } = useCart();
 
@@ -37,15 +36,11 @@ export default function Courses() {
         course.subtitle,
         course.description,
         course.category,
-        course.level,
-        course.modality,
         course.durationLabel,
         ...(course.learningOutcomes ?? []),
         ...(course.requirements ?? []),
         ...(course.audience ?? []),
-        ...(course.modules ?? []).map(
-          (module) => module.title,
-        ),
+        ...(course.modules ?? []).map((module) => module.title),
       ]
         .filter(Boolean)
         .join(' ')
@@ -57,10 +52,7 @@ export default function Courses() {
 
   function showMessage(text) {
     setMessage(text);
-
-    window.setTimeout(() => {
-      setMessage('');
-    }, 3500);
+    window.setTimeout(() => setMessage(''), 3500);
   }
 
   function handleFreeEnrollment(course) {
@@ -70,17 +62,11 @@ export default function Courses() {
     }
 
     if (user.role !== 'client') {
-      showMessage(
-        'La cuenta administrativa no puede inscribirse como estudiante.',
-      );
+      showMessage('La cuenta administrativa no puede inscribirse como estudiante.');
       return;
     }
 
-    const result = enrollFreeCourse(
-      user.id,
-      course.id,
-    );
-
+    const result = enrollFreeCourse(user.id, course.id);
     showMessage(result.message);
 
     if (result.ok) {
@@ -90,7 +76,6 @@ export default function Courses() {
 
   function handlePaidCourse(course) {
     const result = addCourse(course);
-
     showMessage(result.message);
 
     if (result.ok) {
@@ -104,52 +89,20 @@ export default function Courses() {
         <section className="page-banner foundation-courses-banner">
           <div className="container courses-hero-grid">
             <div>
-              <p className="section-tag">
-                Formación Tamborito
-              </p>
-
-              <h1 className="page-title">
-                Cursos, talleres y rutas de aprendizaje.
-              </h1>
-
+              <h1 className="page-title">Cursos y rutas de aprendizaje Tamborito.</h1>
               <p className="lead max-text">
-                La oferta formativa reúne cursos gratuitos y
-                pagos. Todos requieren registro o inicio de
-                sesión para conservar progreso, evaluaciones,
-                pagos, evidencias y certificaciones.
+                Consulta los cursos disponibles de la Fundación. Los cursos gratuitos y de pago
+                requieren cuenta para conservar inscripción, avance, evidencias, recursos y
+                certificados.
               </p>
-
-              <div className="hero-actions courses-actions">
-                <Link
-                  to="/registro"
-                  className="btn btn-primary"
-                >
-                  Crear cuenta
-                </Link>
-
-                <Link
-                  to={user ? '/dashboard' : '/login'}
-                  className="btn btn-outline-dark"
-                >
-                  {user
-                    ? 'Ver mi panel'
-                    : 'Iniciar sesión'}
-                </Link>
-              </div>
             </div>
 
             <div className="course-system-card">
-              <span>Modelo del sistema</span>
-
-              <h2>
-                Catálogo público + panel privado del
-                estudiante
-              </h2>
-
+              <span>Funcionamiento</span>
+              <h2>Catálogo público y campus privado</h2>
               <p>
-                El visitante descubre la oferta. El usuario
-                registrado ve sus cursos inscritos, comprados,
-                avances, actividades y certificados.
+                El visitante conoce la oferta. El estudiante registrado accede al contenido,
+                entrega evidencias y consulta su progreso desde el campus.
               </p>
             </div>
           </div>
@@ -158,21 +111,12 @@ export default function Courses() {
         <section className="section course-model-section">
           <div className="container">
             <div className="section-heading center">
-              <p className="section-tag">
-                Distribución funcional
-              </p>
-
-              <h2>
-                Cómo se organiza la experiencia de cursos.
-              </h2>
+              <h2>Ruta clara para estudiar y certificar avances.</h2>
             </div>
 
             <div className="cards-grid four course-steps-grid">
               {coursePlatformSteps.map((step) => (
-                <article
-                  className="course-step-card"
-                  key={step.title}
-                >
+                <article className="course-step-card" key={step.title}>
                   <h3>{step.title}</h3>
                   <p>{step.text}</p>
                 </article>
@@ -185,21 +129,15 @@ export default function Courses() {
           <div className="container">
             <div className="dashboard-top catalog-top">
               <div>
-                <p className="section-tag">
-                  Vista pública
-                </p>
-
-                <h2>Oferta disponible</h2>
+                <h2>Cursos disponibles</h2>
               </div>
 
               <input
                 type="text"
-                placeholder="Buscar cursos..."
+                placeholder="Buscar por nombre, categoría o contenido..."
                 className="search-input"
                 value={query}
-                onChange={(event) =>
-                  setQuery(event.target.value)
-                }
+                onChange={(event) => setQuery(event.target.value)}
               />
             </div>
 
@@ -214,17 +152,8 @@ export default function Courses() {
                 <CourseCatalogCard
                   key={course.id}
                   course={course}
-                  instructor={getInstructorById(
-                    course.instructorId,
-                  )}
-                  enrollment={
-                    user?.role === 'client'
-                      ? getEnrollment(
-                          user.id,
-                          course.id,
-                        )
-                      : null
-                  }
+                  instructor={getInstructorById(course.instructorId)}
+                  enrollment={user?.role === 'client' ? getEnrollment(user.id, course.id) : null}
                   onEnroll={handleFreeEnrollment}
                   onAddToCart={handlePaidCourse}
                 />
@@ -234,49 +163,9 @@ export default function Courses() {
             {filteredCourses.length === 0 && (
               <div className="empty-state">
                 <h3>No encontramos cursos</h3>
-
-                <p>
-                  Prueba con otra palabra o limpia el campo
-                  de búsqueda.
-                </p>
+                <p>Prueba con otra palabra o limpia el campo de búsqueda.</p>
               </div>
             )}
-          </div>
-        </section>
-
-        <section className="section foundation-cta-section">
-          <div className="container foundation-cta-card">
-            <div>
-              <p className="section-tag">
-                Regla clave
-              </p>
-
-              <h2>Gratis no significa anónimo.</h2>
-
-              <p>
-                Incluso los cursos gratuitos requieren
-                usuario, porque la fundación necesita
-                registrar evolución, participación,
-                evidencias y cumplimiento para emitir
-                constancias o titulaciones internas.
-              </p>
-            </div>
-
-            <div className="support-actions">
-              <Link
-                to="/registro"
-                className="btn btn-primary"
-              >
-                Crear cuenta
-              </Link>
-
-              <Link
-                to="/dashboard"
-                className="btn btn-outline-dark"
-              >
-                Mis cursos
-              </Link>
-            </div>
           </div>
         </section>
       </main>

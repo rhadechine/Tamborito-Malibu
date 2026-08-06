@@ -15,7 +15,7 @@ const statusOptions = [
   },
   {
     value: 'completed',
-    label: 'Completados',
+    label: 'Finalizados',
   },
 ];
 
@@ -39,9 +39,7 @@ export default function MyCourses() {
     () =>
       enrollments
         .map((enrollment) => {
-          const course = getCourseById(
-            enrollment.courseId,
-          );
+          const course = getCourseById(enrollment.courseId);
 
           if (!course) {
             return null;
@@ -50,17 +48,9 @@ export default function MyCourses() {
           return {
             enrollment,
             course,
-            progress: getCourseProgress(
-              user.id,
-              course.id,
-            ),
-            nextLesson: getNextLesson(
-              user.id,
-              course.id,
-            ),
-            instructor: getInstructorById(
-              course.instructorId,
-            ),
+            progress: getCourseProgress(user.id, course.id),
+            nextLesson: getNextLesson(user.id, course.id),
+            instructor: getInstructorById(course.instructorId),
           };
         })
         .filter(Boolean),
@@ -75,42 +65,34 @@ export default function MyCourses() {
   );
 
   const filteredCourses = useMemo(() => {
-    const normalizedQuery = query
-      .trim()
-      .toLowerCase();
+    const normalizedQuery = query.trim().toLowerCase();
 
-    return courses.filter(
-      ({ enrollment, course }) => {
-        const matchesStatus =
-          status === 'all' ||
-          enrollment.status === status;
+    return courses.filter(({ enrollment, course }) => {
+      const matchesStatus =
+        status === 'all' || enrollment.status === status;
 
-        const matchesQuery =
-          !normalizedQuery ||
-          [
-            course.title,
-            course.subtitle,
-            course.category,
-            course.level,
-          ]
-            .join(' ')
-            .toLowerCase()
-            .includes(normalizedQuery);
+      const matchesQuery =
+        !normalizedQuery ||
+        [
+          course.title,
+          course.subtitle,
+          course.category,
+        ]
+          .join(' ')
+          .toLowerCase()
+          .includes(normalizedQuery);
 
-        return matchesStatus && matchesQuery;
-      },
-    );
+      return matchesStatus && matchesQuery;
+    });
   }, [courses, query, status]);
 
   const counts = {
     all: courses.length,
     active: courses.filter(
-      ({ enrollment }) =>
-        enrollment.status === 'active',
+      ({ enrollment }) => enrollment.status === 'active',
     ).length,
     completed: courses.filter(
-      ({ enrollment }) =>
-        enrollment.status === 'completed',
+      ({ enrollment }) => enrollment.status === 'completed',
     ).length,
   };
 
@@ -118,22 +100,17 @@ export default function MyCourses() {
     <div className="student-my-courses-page">
       <section className="student-page-header">
         <div>
-          <p className="student-page-eyebrow">
-            Biblioteca personal
-          </p>
+          <p className="student-page-eyebrow">Cursos</p>
 
           <h2>Mis cursos</h2>
 
           <p>
-            Consulta tus rutas activas, avances,
-            clases pendientes y cursos completados.
+            Consulta tus rutas activas, progreso, siguiente actividad y
+            certificados.
           </p>
         </div>
 
-        <Link
-          to="/cursos"
-          className="platform-button platform-button-primary"
-        >
+        <Link to="/cursos" className="platform-button platform-button-primary">
           <PlatformIcon name="plus" size={18} />
           Explorar nuevos cursos
         </Link>
@@ -145,9 +122,7 @@ export default function MyCourses() {
             <button
               type="button"
               key={option.value}
-              className={
-                status === option.value ? 'active' : ''
-              }
+              className={status === option.value ? 'active' : ''}
               onClick={() => setStatus(option.value)}
             >
               {option.label}
@@ -162,9 +137,7 @@ export default function MyCourses() {
           <input
             type="search"
             value={query}
-            onChange={(event) =>
-              setQuery(event.target.value)
-            }
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Buscar entre mis cursos"
           />
         </div>
@@ -179,14 +152,10 @@ export default function MyCourses() {
           <h2>No hay cursos para mostrar.</h2>
 
           <p>
-            Cambia el filtro o inscríbete en una nueva
-            ruta desde el catálogo.
+            Cambia el filtro o inscríbete en una nueva ruta desde el catálogo.
           </p>
 
-          <Link
-            to="/cursos"
-            className="platform-button platform-button-primary"
-          >
+          <Link to="/cursos" className="platform-button platform-button-primary">
             Ver catálogo
           </Link>
         </section>
@@ -200,18 +169,12 @@ export default function MyCourses() {
               nextLesson,
               instructor,
             }) => (
-              <article
-                className="student-library-course-card"
-                key={enrollment.id}
-              >
+              <article className="student-library-course-card" key={enrollment.id}>
                 <Link
                   to={`/campus/cursos/${course.id}`}
                   className="student-library-course-cover"
                 >
-                  <img
-                    src={course.cover}
-                    alt={course.title}
-                  />
+                  <img src={course.cover} alt={course.title} />
 
                   <span
                     className={[
@@ -220,17 +183,12 @@ export default function MyCourses() {
                     ].join(' ')}
                   >
                     {enrollment.status === 'completed'
-                      ? 'Completado'
+                      ? 'Finalizado'
                       : 'En progreso'}
                   </span>
                 </Link>
 
                 <div className="student-library-course-content">
-                  <div className="student-library-meta">
-                    <span>{course.category}</span>
-                    <span>{course.level}</span>
-                  </div>
-
                   <Link
                     to={`/campus/cursos/${course.id}`}
                     className="student-library-title"
@@ -241,23 +199,15 @@ export default function MyCourses() {
                   <p>{course.subtitle}</p>
 
                   <div className="student-library-instructor">
-                    <img
-                      src={instructor?.avatar}
-                      alt={instructor?.name}
-                    />
+                    <img src={instructor?.avatar} alt={instructor?.name} />
 
-                    <span>
-                      {instructor?.name ??
-                        'Equipo Tamborito'}
-                    </span>
+                    <span>{instructor?.name ?? 'Equipo Tamborito'}</span>
                   </div>
 
                   <div className="student-library-progress">
                     <div>
                       <span>Progreso</span>
-                      <strong>
-                        {progress.percentage}%
-                      </strong>
+                      <strong>{progress.percentage}%</strong>
                     </div>
 
                     <div className="student-progress-track">
@@ -269,31 +219,24 @@ export default function MyCourses() {
                     </div>
 
                     <small>
-                      {progress.completed} de{' '}
-                      {progress.total} clases completadas
+                      {progress.completed} de {progress.total} avances
+                      registrados
                     </small>
                   </div>
 
-                  {nextLesson &&
-                    enrollment.status !== 'completed' && (
-                      <div className="student-library-next">
-                        <PlatformIcon
-                          name="play"
-                          size={18}
-                        />
+                  {nextLesson && enrollment.status !== 'completed' && (
+                    <div className="student-library-next">
+                      <PlatformIcon name="play" size={18} />
 
-                        <span>
-                          <small>Siguiente clase</small>
-                          <strong>
-                            {nextLesson.title}
-                          </strong>
-                        </span>
-                      </div>
-                    )}
+                      <span>
+                        <small>Siguiente clase</small>
+                        <strong>{nextLesson.title}</strong>
+                      </span>
+                    </div>
+                  )}
 
                   <div className="student-library-actions">
-                    {nextLesson &&
-                    enrollment.status !== 'completed' ? (
+                    {nextLesson && enrollment.status !== 'completed' ? (
                       <Link
                         to={`/campus/cursos/${course.id}/clase/${nextLesson.id}`}
                         className="platform-button platform-button-primary"

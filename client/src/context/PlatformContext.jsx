@@ -19,12 +19,12 @@ import {
 } from '../utils/formatters';
 
 const STORAGE_KEYS = {
-  courses: 'tamborito.courses.v2',
-  enrollments: 'tamborito.enrollments.v2',
-  orders: 'tamborito.orders.v2',
-  certificates: 'tamborito.certificates.v2',
-  notifications: 'tamborito.notifications.v2',
-  settings: 'tamborito.settings.v2',
+  courses: 'tamborito.courses.v3',
+  enrollments: 'tamborito.enrollments.v3',
+  orders: 'tamborito.orders.v3',
+  certificates: 'tamborito.certificates.v3',
+  notifications: 'tamborito.notifications.v3',
+  settings: 'tamborito.settings.v3',
 };
 
 function readJson(key, fallback) {
@@ -590,6 +590,86 @@ export function PlatformProvider({ children }) {
     };
   }
 
+  function submitEvidence({
+    userId,
+    courseId,
+    lessonId,
+    file,
+    description = '',
+  }) {
+    const course = getCourseById(courseId);
+    const enrollment = getEnrollment(userId, courseId);
+
+    if (!course || !enrollment) {
+      return {
+        ok: false,
+        message:
+          'No existe una inscripción válida para registrar la evidencia.',
+      };
+    }
+
+    const lesson = course.modules
+      .flatMap((module) => module.lessons)
+      .find((item) => item.id === lessonId);
+
+    if (!lesson) {
+      return {
+        ok: false,
+        message: 'La clase no existe dentro del curso.',
+      };
+    }
+
+    if (!file) {
+      return {
+        ok: false,
+        message:
+          'Selecciona un archivo antes de entregar la evidencia.',
+      };
+    }
+
+    const nextEvidence = {
+      id: createId('evi'),
+      lessonId,
+      lessonTitle: lesson.title,
+      fileName: file.name,
+      fileType: file.type || 'Archivo',
+      fileSize: file.size,
+      description: description.trim(),
+      submittedAt: new Date().toISOString(),
+      status: 'submitted',
+    };
+
+    const nextEnrollments = enrollments.map((item) =>
+      item.id === enrollment.id
+        ? {
+            ...item,
+            evidence: [
+              nextEvidence,
+              ...(item.evidence ?? []).filter(
+                (evidence) =>
+                  evidence.lessonId !== lessonId,
+              ),
+            ],
+          }
+        : item,
+    );
+
+    persistEnrollments(nextEnrollments);
+
+    addNotification({
+      userId,
+      title: 'Evidencia entregada',
+      message: `Se registró la evidencia de ${lesson.title}.`,
+      type: 'course',
+    });
+
+    return {
+      ok: true,
+      message: 'Evidencia entregada correctamente.',
+      evidence: nextEvidence,
+    };
+  }
+
   function markNotificationRead(notificationId) {
     const nextNotifications =
       notifications.map((notification) =>
@@ -829,6 +909,7 @@ export function PlatformProvider({ children }) {
     enrollFreeCourse,
     completePurchase,
     toggleLessonCompletion,
+    submitEvidence,
     markNotificationRead,
     markAllNotificationsRead,
     createCourse,

@@ -6,8 +6,8 @@ import {
 } from 'react';
 import { seedUsers } from '../data/platformSeed';
 
-const USERS_KEY = 'tamborito.users.v2';
-const SESSION_KEY = 'tamborito.session.v2';
+const USERS_KEY = 'tamborito.users.v3';
+const SESSION_KEY = 'tamborito.session.v3';
 
 function readJson(key, fallback) {
   try {

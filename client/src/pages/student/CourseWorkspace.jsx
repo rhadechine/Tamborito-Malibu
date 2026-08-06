@@ -108,10 +108,10 @@ export default function CourseWorkspace() {
         <div className="student-workspace-copy">
           <div className="student-workspace-badges">
             <span>{course.category}</span>
-            <span>{course.level}</span>
+            <span>{course.isFree ? 'Gratis' : 'Pago'}</span>
             <span>
               {enrollment.status === 'completed'
-                ? 'Completado'
+                ? 'Finalizado'
                 : 'En progreso'}
             </span>
           </div>
@@ -153,7 +153,7 @@ export default function CourseWorkspace() {
 
             <small>
               {progress.completed} de {progress.total}{' '}
-              clases completadas
+              avances registrados
             </small>
           </div>
 
@@ -298,8 +298,8 @@ export default function CourseWorkspace() {
                         <strong>{module.title}</strong>
                         <small>
                           {moduleCompleted} de{' '}
-                          {module.lessons.length} clases
-                          completadas
+                          {module.lessons.length} avances
+                          registrados
                         </small>
                       </span>
 
@@ -418,20 +418,13 @@ export default function CourseWorkspace() {
               </li>
 
               <li>
-                <span>Modalidad</span>
-                <strong>{course.modality}</strong>
+                <span>Duración</span>
+                <strong>{course.durationLabel}</strong>
               </li>
 
               <li>
-                <span>Nivel</span>
-                <strong>{course.level}</strong>
-              </li>
-
-              <li>
-                <span>Asistencia</span>
-                <strong>
-                  {enrollment.attendance}%
-                </strong>
+                <span>Acceso</span>
+                <strong>{course.isFree ? 'Gratuito' : 'Pago'}</strong>
               </li>
 
               <li>
@@ -439,7 +432,7 @@ export default function CourseWorkspace() {
                 <strong>
                   {enrollment.status ===
                   'completed'
-                    ? 'Completado'
+                    ? 'Finalizado'
                     : 'Activo'}
                 </strong>
               </li>

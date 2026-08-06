@@ -16,14 +16,9 @@ const initialForm = {
 };
 
 export default function Login() {
-  const [form, setForm] =
-    useState(initialForm);
-
-  const [message, setMessage] =
-    useState('');
-
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [form, setForm] = useState(initialForm);
+  const [message, setMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -33,11 +28,7 @@ export default function Login() {
   if (user) {
     return (
       <Navigate
-        to={
-          user.role === 'admin'
-            ? '/admin'
-            : '/campus'
-        }
+        to={user.role === 'admin' ? '/admin' : '/campus'}
         replace
       />
     );
@@ -62,20 +53,13 @@ export default function Login() {
       return;
     }
 
-    navigate(
-      loggedUser.role === 'admin'
-        ? '/admin'
-        : '/campus',
-    );
+    navigate(loggedUser.role === 'admin' ? '/admin' : '/campus');
   }
 
   function submitLogin(event) {
     event.preventDefault();
 
-    const result = login(
-      form.email,
-      form.password,
-    );
+    const result = login(form.email, form.password);
 
     if (!result.ok) {
       setMessage(result.message);
@@ -86,23 +70,23 @@ export default function Login() {
   }
 
   function loginAsDemo(role) {
-    const credentials =
-      role === 'admin'
-        ? {
-            email:
-              'admin@tamborito.org',
-            password: 'admin123',
-          }
-        : {
-            email:
-              'cliente@tamborito.org',
-            password: 'cliente123',
-          };
+    const demoCredentials = {
+      client: {
+        email: 'cliente@tamborito.org',
+        password: 'cliente123',
+      },
+      admin: {
+        email: 'admin@tamborito.org',
+        password: 'admin123',
+      },
+      museumAdmin: {
+        email: 'admin@malibu.org',
+        password: 'admin123',
+      },
+    };
 
-    const result = login(
-      credentials.email,
-      credentials.password,
-    );
+    const credentials = demoCredentials[role];
+    const result = login(credentials.email, credentials.password);
 
     if (result.ok) {
       redirectAfterLogin(result.user);
@@ -116,55 +100,35 @@ export default function Login() {
           <div className="auth-visual-overlay" />
 
           <div className="auth-visual-content">
-            <Link
-              to="/fundacion"
-              className="auth-brand"
-            >
-              Fundación{' '}
-              <span>Tamborito</span>
+            <Link to="/fundacion" className="auth-brand">
+              Fundación <span>Tamborito</span>
             </Link>
 
             <div>
-              <p className="auth-eyebrow">
-                Campus cultural
-              </p>
+              <p className="auth-eyebrow">Campus cultural</p>
 
-              <h1>
-                Continúa aprendiendo desde
-                donde quedaste.
-              </h1>
+              <h1>Continúa aprendiendo desde donde quedaste.</h1>
 
               <p>
-                Accede a tus cursos,
-                actividades, evaluaciones,
-                compras y certificados desde
-                un solo lugar.
+                Accede a tus cursos, actividades, evaluaciones, compras y
+                certificados desde un solo lugar.
               </p>
             </div>
 
             <div className="auth-visual-stats">
               <article>
                 <strong>Progreso</strong>
-                <span>
-                  Registro detallado por
-                  curso
-                </span>
+                <span>Registro detallado por curso</span>
               </article>
 
               <article>
                 <strong>Recursos</strong>
-                <span>
-                  Videos, lecturas y
-                  actividades
-                </span>
+                <span>Videos, lecturas y actividades</span>
               </article>
 
               <article>
                 <strong>Certificación</strong>
-                <span>
-                  Constancias al completar
-                  rutas
-                </span>
+                <span>Constancias al completar rutas</span>
               </article>
             </div>
           </div>
@@ -173,33 +137,21 @@ export default function Login() {
         <section className="auth-form-panel">
           <div className="auth-form-container">
             <div className="auth-form-heading">
-              <p className="section-tag">
-                Bienvenido de nuevo
-              </p>
+              <p className="section-tag">Bienvenido de nuevo</p>
 
               <h2>Iniciar sesión</h2>
 
               <p>
-                Ingresa con el correo y la
-                contraseña asociados a tu
-                cuenta.
+                Ingresa con el correo y la contraseña asociados a tu cuenta.
               </p>
             </div>
 
-            <form
-              className="auth-form"
-              onSubmit={submitLogin}
-            >
+            <form className="auth-form" onSubmit={submitLogin}>
               <div className="platform-field">
-                <label htmlFor="email">
-                  Correo electrónico
-                </label>
+                <label htmlFor="email">Correo electrónico</label>
 
                 <div className="platform-input-shell">
-                  <PlatformIcon
-                    name="user"
-                    size={19}
-                  />
+                  <PlatformIcon name="user" size={19} />
 
                   <input
                     id="email"
@@ -216,9 +168,7 @@ export default function Login() {
 
               <div className="platform-field">
                 <div className="platform-label-row">
-                  <label htmlFor="password">
-                    Contraseña
-                  </label>
+                  <label htmlFor="password">Contraseña</label>
 
                   <button
                     type="button"
@@ -234,19 +184,12 @@ export default function Login() {
                 </div>
 
                 <div className="platform-input-shell">
-                  <PlatformIcon
-                    name="lock"
-                    size={19}
-                  />
+                  <PlatformIcon name="lock" size={19} />
 
                   <input
                     id="password"
                     name="password"
-                    type={
-                      showPassword
-                        ? 'text'
-                        : 'password'
-                    }
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     value={form.password}
                     onChange={updateField}
@@ -257,15 +200,9 @@ export default function Login() {
                   <button
                     type="button"
                     className="input-end-button"
-                    onClick={() =>
-                      setShowPassword(
-                        (current) => !current,
-                      )
-                    }
+                    onClick={() => setShowPassword((current) => !current)}
                   >
-                    {showPassword
-                      ? 'Ocultar'
-                      : 'Ver'}
+                    {showPassword ? 'Ocultar' : 'Ver'}
                   </button>
                 </div>
               </div>
@@ -285,62 +222,52 @@ export default function Login() {
             </form>
 
             <div className="auth-divider">
-              <span>
-                Accesos de demostración
-              </span>
+              <span>Accesos de demostración</span>
             </div>
 
             <div className="auth-demo-grid">
               <button
                 type="button"
                 className="auth-demo-card"
-                onClick={() =>
-                  loginAsDemo('client')
-                }
+                onClick={() => loginAsDemo('client')}
               >
-                <PlatformIcon
-                  name="book"
-                  size={24}
-                />
+                <PlatformIcon name="book" size={24} />
 
                 <span>
-                  <strong>
-                    Campus del estudiante
-                  </strong>
-                  <small>
-                    cliente@tamborito.org
-                  </small>
+                  <strong>Campus del estudiante</strong>
+                  <small>cliente@tamborito.org</small>
                 </span>
               </button>
 
               <button
                 type="button"
                 className="auth-demo-card"
-                onClick={() =>
-                  loginAsDemo('admin')
-                }
+                onClick={() => loginAsDemo('admin')}
               >
-                <PlatformIcon
-                  name="settings"
-                  size={24}
-                />
+                <PlatformIcon name="settings" size={24} />
 
                 <span>
-                  <strong>
-                    Panel administrativo
-                  </strong>
-                  <small>
-                    admin@tamborito.org
-                  </small>
+                  <strong>Admin Tamborito</strong>
+                  <small>admin@tamborito.org</small>
+                </span>
+              </button>
+
+              <button
+                type="button"
+                className="auth-demo-card"
+                onClick={() => loginAsDemo('museumAdmin')}
+              >
+                <PlatformIcon name="settings" size={24} />
+
+                <span>
+                  <strong>Admin Malibú</strong>
+                  <small>admin@malibu.org</small>
                 </span>
               </button>
             </div>
 
             <p className="auth-form-footer">
-              ¿Todavía no tienes cuenta?{' '}
-              <Link to="/registro">
-                Crear una cuenta
-              </Link>
+              ¿Todavía no tienes cuenta? <Link to="/registro">Crear una cuenta</Link>
             </p>
           </div>
         </section>

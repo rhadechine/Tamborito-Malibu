@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import PageShell from '../components/PageShell';
 import FoundationFooter from '../components/FoundationFooter';
 import { foundationImages, trajectoryTimeline } from '../data/foundationContent';
@@ -11,10 +10,11 @@ export default function History() {
           <div className="page-hero-overlay"></div>
           <div className="container page-hero-content">
             <p className="eyebrow">Historia de Fundación Tamborito</p>
-            <h1>Una trayectoria joven con raíces profundas.</h1>
+            <h1>Una organización joven con raíces musicales profundas.</h1>
             <p>
-              La historia de Tamborito nace desde Zambrano, Bolívar, con una misión clara:
-              preservar la tradición musical y convertirla en educación, comunidad y memoria viva.
+              Tamborito nace en Zambrano, Bolívar, para proteger la música tradicional, formar
+              nuevas generaciones y convertir la cultura en una herramienta de identidad,
+              convivencia y aprendizaje.
             </p>
           </div>
         </section>
@@ -22,17 +22,24 @@ export default function History() {
         <section className="section history-opening-section">
           <div className="container history-opening-grid">
             <div>
-              <p className="section-tag">Origen institucional</p>
               <h2>Fundación Tamborito, Tradición, Cultura y Neuroeducación.</h2>
               <p>
-                La Fundación Tamborito tuvo sus raíces el 24 de febrero de 2023, cuando el
-                Licenciado en Música Ramses Javith Hadechine Alvarez fundó una organización
-                orientada al rescate de la tradición musical de Zambrano, Bolívar.
+                La fundación fue creada el 24 de febrero de 2023 por el Licenciado en Música
+                Ramses Javith Hadechine Alvarez. Su origen responde a una necesidad concreta:
+                recuperar, enseñar y proyectar las expresiones musicales tradicionales de Zambrano
+                desde una estructura educativa organizada.
               </p>
               <p>
-                Su visión consiste en revitalizar la herencia musical del territorio y usar la
-                música autóctona como herramienta mediadora para la formación integral, la inclusión
-                social y la construcción de paz.
+                El proceso integra percusión folklórica, cantos de pajarito, gaitas tradicionales,
+                trabajo comunitario y acompañamiento pedagógico. Cada actividad busca que la
+                música permanezca viva en la práctica cotidiana y no solamente como recuerdo
+                cultural.
+              </p>
+              <p>
+                La historia institucional se entiende como un camino en construcción: formación de
+                estudiantes, participación en escenarios culturales, alianzas educativas,
+                reconocimientos públicos y consolidación de una plataforma digital para sostener el
+                crecimiento del proyecto.
               </p>
             </div>
 
@@ -43,31 +50,22 @@ export default function History() {
         </section>
 
         <section className="section soft-bg history-values-section">
-          <div className="container mission-grid">
+          <div className="container mission-grid two-columns">
             <article className="value-block">
-              <p className="section-tag">Misión</p>
-              <h3>Preservar y enseñar</h3>
+              <h3>Misión</h3>
               <p>
                 Rescatar, enseñar y proyectar las expresiones musicales tradicionales de Zambrano
-                mediante procesos educativos, comunitarios y culturales.
+                mediante procesos educativos, culturales y comunitarios que fortalezcan identidad,
+                participación y memoria viva.
               </p>
             </article>
 
             <article className="value-block">
-              <p className="section-tag">Visión</p>
-              <h3>Ser referente cultural</h3>
+              <h3>Visión</h3>
               <p>
-                Consolidarse como una institución reconocida por formar nuevas generaciones desde
-                la música tradicional, la neuroeducación y el patrimonio vivo.
-              </p>
-            </article>
-
-            <article className="value-block">
-              <p className="section-tag">Propósito</p>
-              <h3>Transformar desde la cultura</h3>
-              <p>
-                Usar el arte musical como fuerza de identidad, convivencia, aprendizaje,
-                participación y construcción de paz en el territorio.
+                Consolidarse como una institución referente en formación musical tradicional,
+                neuroeducación y trabajo comunitario, capaz de conectar nuevas generaciones con
+                el patrimonio cultural del territorio.
               </p>
             </article>
           </div>
@@ -76,7 +74,6 @@ export default function History() {
         <section className="section timeline-section foundation-timeline-section">
           <div className="container">
             <div className="section-heading center">
-              <p className="section-tag">Trayectoria</p>
               <h2>Momentos que construyen memoria.</h2>
             </div>
 
@@ -100,12 +97,11 @@ export default function History() {
         <section className="section dark-section history-action-section">
           <div className="container history-action-grid">
             <div>
-              <p className="section-tag light">Tamborito en acción</p>
-              <h2>La historia no está quieta: se toca, se canta y se comparte.</h2>
+              <h2>La historia se toca, se canta y se comparte.</h2>
               <p>
                 Los registros visuales de la trayectoria muestran talleres, presentaciones,
-                entrevistas, carnavales, alianzas educativas y procesos con niños y jóvenes. Esa es
-                la base narrativa que debe sostener la presencia digital de la Fundación.
+                entrevistas, carnavales, alianzas educativas y procesos con niños y jóvenes. Esa
+                evidencia debe sostener la narrativa pública de la Fundación.
               </p>
             </div>
 
@@ -129,7 +125,6 @@ export default function History() {
         <section className="section history-gallery-section">
           <div className="container">
             <div className="section-heading">
-              <p className="section-tag">Galería de trayectoria</p>
               <h2>Imágenes que cuentan el proceso.</h2>
             </div>
 
@@ -138,28 +133,6 @@ export default function History() {
               <img src={foundationImages.interview} alt="Entrevista cultural Montes de María" />
               <img src={foundationImages.famma} alt="Participación en FAMMA" />
               <img src={foundationImages.drumsGroup} alt="Niños con tambores tradicionales" />
-            </div>
-          </div>
-        </section>
-
-        <section className="section foundation-cta-section">
-          <div className="container foundation-cta-card">
-            <div>
-              <p className="section-tag">Siguiente paso</p>
-              <h2>Conoce los cursos y procesos formativos.</h2>
-              <p>
-                La historia de Tamborito se proyecta en cada estudiante que aprende, practica,
-                evalúa y comparte la tradición musical del territorio.
-              </p>
-            </div>
-
-            <div className="support-actions">
-              <Link to="/cursos" className="btn btn-primary">
-                Ver cursos
-              </Link>
-              <Link to="/inscripcion" className="btn btn-outline-dark">
-                Inscripción
-              </Link>
             </div>
           </div>
         </section>

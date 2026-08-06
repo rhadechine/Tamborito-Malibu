@@ -44,7 +44,7 @@ export default function CourseCatalogCard({
       <div className="catalog-course-content">
         <div className="catalog-course-category">
           <span>{course.category}</span>
-          <span>{course.level}</span>
+          <span>{course.isFree ? 'Gratis' : 'Pago'}</span>
         </div>
 
         <Link

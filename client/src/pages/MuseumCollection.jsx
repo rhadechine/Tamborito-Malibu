@@ -1,69 +1,94 @@
-import { Link } from 'react-router-dom';
 import MuseumFooter from '../components/MuseumFooter';
 import PageShell from '../components/PageShell';
 
-const artifacts = [
+const collectionGroups = [
   {
-    imageClass: 'artifact-a',
-    name: 'Vasija ceremonial',
+    title: 'Cerámica ceremonial y doméstica',
     description:
-      'Objeto cerámico asociado a prácticas rituales o domésticas. La ficha definitiva deberá validarse con la información oficial del Museo.',
-    category: 'Cerámica',
+      'Piezas asociadas a usos rituales, almacenamiento, preparación o representación simbólica.',
+    items: [
+      {
+        name: 'Vasija ceremonial',
+        image:
+          'https://images.unsplash.com/photo-1594794312433-05a69a98b7a0?auto=format&fit=crop&w=900&q=80',
+        material: 'Cerámica modelada y cocida',
+        history:
+          'Este tipo de pieza permite explicar prácticas de uso cotidiano o ceremonial según su forma, acabado y contexto de hallazgo.',
+        description:
+          'Registro descriptivo para documentar forma, decoración, estado de conservación y posibles marcas de elaboración.',
+      },
+      {
+        name: 'Fragmento decorado',
+        image:
+          'https://images.unsplash.com/photo-1580136607993-fd598cf5c4f5?auto=format&fit=crop&w=900&q=80',
+        material: 'Cerámica con incisiones o pintura',
+        history:
+          'Los fragmentos permiten estudiar técnicas, patrones visuales y cambios en estilos de elaboración.',
+        description:
+          'La ficha debe registrar color, textura, tipo de decoración, medidas y observaciones de conservación.',
+      },
+    ],
   },
   {
-    imageClass: 'artifact-b',
-    name: 'Figura antropomorfa',
+    title: 'Figuras y representación simbólica',
     description:
-      'Pieza representativa con rasgos humanos, útil para explicar simbolismo, técnica de elaboración y estado de conservación.',
-    category: 'Figura',
+      'Elementos que ayudan a interpretar formas humanas, animales o motivos culturales presentes en la colección.',
+    items: [
+      {
+        name: 'Figura antropomorfa',
+        image:
+          'https://images.unsplash.com/photo-1565877050221-61fd5a080d5b?auto=format&fit=crop&w=900&q=80',
+        material: 'Arcilla cocida',
+        history:
+          'Las figuras con rasgos humanos pueden relacionarse con identidad, ritualidad, vida social o representación comunitaria.',
+        description:
+          'El registro debe describir rasgos visibles, proporción, postura, decoración y estado de la pieza.',
+      },
+      {
+        name: 'Elemento zoomorfo',
+        image:
+          'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&w=900&q=80',
+        material: 'Cerámica o material mixto',
+        history:
+          'Las formas animales permiten explicar vínculos entre entorno natural, pensamiento simbólico y prácticas culturales.',
+        description:
+          'Debe documentarse el animal representado, el nivel de conservación y los detalles visibles del modelado.',
+      },
+    ],
   },
   {
-    imageClass: 'artifact-c',
-    name: 'Herramienta lítica',
+    title: 'Herramientas, piedra y materiales de trabajo',
     description:
-      'Objeto elaborado en piedra que permite abordar la tecnología, el trabajo y diferentes actividades de la vida cotidiana.',
-    category: 'Piedra',
-  },
-  {
-    imageClass: 'artifact-d',
-    name: 'Fragmento decorado',
-    description:
-      'Fragmento con patrones, incisiones o elementos visuales que pueden apoyar la identificación de técnicas y estilos.',
-    category: 'Fragmento',
+      'Objetos relacionados con técnicas, actividades productivas y procesos de transformación de materiales.',
+    items: [
+      {
+        name: 'Herramienta lítica',
+        image:
+          'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=900&q=80',
+        material: 'Piedra tallada o pulida',
+        history:
+          'Las herramientas líticas ayudan a comprender técnicas de trabajo, alimentación, corte, molienda o elaboración de objetos.',
+        description:
+          'La ficha debe incluir tipo de piedra, desgaste, tamaño, uso probable y estado de conservación.',
+      },
+      {
+        name: 'Pieza de molienda',
+        image:
+          'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80',
+        material: 'Piedra con señales de uso',
+        history:
+          'Los elementos de molienda permiten explicar prácticas alimentarias y procesos cotidianos de preparación.',
+        description:
+          'El detalle debe registrar superficie de uso, desgaste, dimensiones y observaciones de manejo.',
+      },
+    ],
   },
 ];
 
-const exhibitions = [
-  {
-    title: 'Colección permanente',
-    text: 'Recorrido base por las piezas más representativas y por los temas centrales del Museo.',
-  },
-  {
-    title: 'Selecciones temporales',
-    text: 'Conjuntos de piezas, fotografías o documentos organizados alrededor de un tema específico.',
-  },
-  {
-    title: 'Recorridos educativos',
-    text: 'Presentaciones adaptadas para estudiantes, familias, investigadores y grupos comunitarios.',
-  },
-];
-
-const documents = [
-  {
-    coverClass: 'museo-book-a',
-    title: 'Catálogo del Museo',
-    text: 'Documento general para organizar las piezas destacadas y la información esencial de la colección.',
-  },
-  {
-    coverClass: 'museo-book-b',
-    title: 'Fichas de conservación',
-    text: 'Registros descriptivos para documentar materiales, dimensiones, procedencia y estado de las piezas.',
-  },
-  {
-    coverClass: 'museo-book-c',
-    title: 'Archivo fotográfico',
-    text: 'Memoria visual de las piezas, los espacios del Museo y las actividades de divulgación realizadas.',
-  },
+const adminNotes = [
+  'Agregar nuevas piezas desde el panel administrativo de Malibú.',
+  'Asignar cada pieza a un grupo de colección.',
+  'Registrar imagen, descripción, historia, material y estado de conservación.',
 ];
 
 export default function MuseumCollection() {
@@ -72,151 +97,73 @@ export default function MuseumCollection() {
       <main>
         <section className="page-banner museo-banner">
           <div className="container center">
-            <p className="section-tag museo-tag">
-              Colecciones
-            </p>
-
-            <h1 className="page-title">
-              Piezas arqueológicas y memoria patrimonial.
-            </h1>
-
+            <h1 className="page-title">Colecciones del Museo.</h1>
             <p className="lead center-text max-text">
-              Un espacio integrado para consultar piezas
-              destacadas, exposiciones, documentación, archivo
-              e investigaciones relacionadas con las
-              colecciones del Museo.
+              Consulta grupos de piezas con imagen, descripción histórica y
+              detalle de material. Esta estructura está preparada para que el
+              administrador de Malibú agregue contenido posteriormente.
             </p>
           </div>
         </section>
 
         <section className="section">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-tag museo-tag">
-                Piezas destacadas
-              </p>
+          <div className="container museum-collection-groups">
+            {collectionGroups.map((group) => (
+              <article className="museum-collection-group" key={group.title}>
+                <div className="museum-collection-heading">
+                  <h2>{group.title}</h2>
+                  <p>{group.description}</p>
+                </div>
 
-              <h2>
-                Una primera mirada a la colección.
-              </h2>
-            </div>
+                <div className="museum-piece-grid">
+                  {group.items.map((item) => (
+                    <article className="museum-piece-card" key={item.name}>
+                      <img src={item.image} alt={item.name} />
 
-            <div className="collection-grid">
-              {artifacts.map((artifact) => (
-                <article
-                  className="artifact-card"
-                  key={artifact.name}
-                >
-                  <div
-                    className={`artifact-img ${artifact.imageClass}`}
-                  />
+                      <div className="museum-piece-content">
+                        <h3>{item.name}</h3>
 
-                  <h3>{artifact.name}</h3>
-
-                  <p>{artifact.description}</p>
-
-                  <span>{artifact.category}</span>
-                </article>
-              ))}
-            </div>
+                        <dl>
+                          <div>
+                            <dt>Material</dt>
+                            <dd>{item.material}</dd>
+                          </div>
+                          <div>
+                            <dt>Historia</dt>
+                            <dd>{item.history}</dd>
+                          </div>
+                          <div>
+                            <dt>Descripción</dt>
+                            <dd>{item.description}</dd>
+                          </div>
+                        </dl>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
         <section className="section museo-soft">
-          <div className="container">
-            <div className="section-heading center">
-              <p className="section-tag museo-tag">
-                Exposición y divulgación
-              </p>
-
-              <h2>
-                Formas de explorar las colecciones.
-              </h2>
-            </div>
-
-            <div className="cards-grid three">
-              {exhibitions.map((exhibition) => (
-                <article
-                  className="future-card museo-card"
-                  key={exhibition.title}
-                >
-                  <h3>{exhibition.title}</h3>
-
-                  <p>{exhibition.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-tag museo-tag">
-                Investigación y archivo
-              </p>
-
-              <h2>
-                Documentación asociada a las piezas.
-              </h2>
-            </div>
-
-            <div className="book-grid">
-              {documents.map((document) => (
-                <article
-                  className="book-card museo-card"
-                  key={document.title}
-                >
-                  <div
-                    className={`book-cover ${document.coverClass}`}
-                  />
-
-                  <h3>{document.title}</h3>
-
-                  <p>{document.text}</p>
-
-                  <span className="text-link museo-link">
-                    Recurso en preparación
-                  </span>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section ecosystem-support museo-soft">
-          <div className="container support-card">
-            <div>
-              <p className="section-tag museo-tag">
-                Consultas sobre la colección
-              </p>
-
-              <h2>
-                ¿Necesitas información sobre una pieza?
-              </h2>
-
+          <div className="container split-grid museum-admin-note">
+            <div className="split-text">
+              <h2>Administración de contenido Malibú.</h2>
               <p>
-                Puedes comunicarte con el Museo para realizar
-                consultas, solicitar una visita educativa o
-                proponer una colaboración académica
-                relacionada con las colecciones.
+                El sitio conserva la misma plataforma administrativa, pero el
+                usuario administrador de Malibú puede utilizar un perfil propio
+                para cargar piezas, grupos de colección, publicaciones y
+                recursos asociados al museo.
               </p>
             </div>
 
-            <div className="support-actions">
-              <Link
-                to="/museo/contactanos"
-                className="btn btn-museo"
-              >
-                Contactar al Museo
-              </Link>
-
-              <Link
-                to="/museo/donar"
-                className="btn btn-outline-dark"
-              >
-                Apoyar la conservación
-              </Link>
+            <div className="feature-stack">
+              {adminNotes.map((note) => (
+                <article className="feature-card museo-card" key={note}>
+                  <p>{note}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
