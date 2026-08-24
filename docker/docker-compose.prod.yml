@@ -1,0 +1,45 @@
+# Override de producción — sección 65/66 del documento de arquitectura.
+#
+# `docker-compose.yml` es deliberadamente un compose de DESARROLLO: monta el
+# código fuente en caliente (`volumes: ..:/app`), corre Gunicorn con
+# `--reload` y fija `DJANGO_SETTINGS_MODULE=config.settings.development`
+# (DEBUG=True, ALLOWED_HOSTS=["*"]). Levantarlo tal cual en un servidor
+# expuesto sería servir la API con las protecciones de `production.py`
+# apagadas.
+#
+# Uso:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Este override NO reemplaza una plataforma de despliegue real (no gestiona
+# réplicas, rolling updates, ni migra automáticamente antes de aceptar
+# tráfico — sección 66, "Evolución hacia microservicios"); resuelve
+# puntualmente que "producción" no corra con la configuración de "desarrollo".
+services:
+  postgres:
+    # `!reset` (no una lista vacía a secas): Compose fusiona por defecto las
+    # claves de tipo lista entre archivos en vez de reemplazarlas, así que
+    # `ports: []` a solas deja intacto el `ports:` del compose base.
+    # Sin publicar el puerto al host: solo lo alcanzan los demás contenedores
+    # de esta red. En desarrollo se expone a propósito para psql/tests locales.
+    ports: !reset []
+
+  pgbouncer:
+    ports: !reset []
+
+  web:
+    # Sin bind-mount: corre el código empaquetado en la imagen, no el árbol de
+    # trabajo del host — y sin --reload, que en producción solo añade el
+    # costo de vigilar el sistema de archivos sin ningún beneficio.
+    volumes: !reset []
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+    restart: always
+
+  celery_worker:
+    volumes: !reset []
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+    restart: always

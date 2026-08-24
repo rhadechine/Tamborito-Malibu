@@ -1,0 +1,125 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    # password_encryption=md5: PgBouncer se conecta al backend con
+    # AUTH_TYPE=md5 (ver servicio `pgbouncer`); si Postgres usara el
+    # scram-sha-256 por defecto de la v16, PgBouncer no podría autenticar
+    # contra el backend ("wrong password type"). No se cambia sin subir a la
+    # vez la versión de PgBouncer y probar el par en conjunto — es un cambio
+    # de infraestructura, no de código, y romperlo a ciegas deja la app sin
+    # base de datos. El puerto de Postgres tampoco se publica en producción
+    # (`docker-compose.prod.yml`), que es lo que de verdad limita quién
+    # puede intentar autenticarse contra él.
+    command: ["postgres", "-c", "password_encryption=md5"]
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-tamborito}
+      POSTGRES_USER: ${DATABASE_USER:-tamborito}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-tamborito}
+      # Sin esto, initdb genera pg_hba.conf exigiendo scram-sha-256 para
+      # conexiones host, incompatible con AUTH_TYPE=md5 de PgBouncer
+      # ("wrong password type" al autenticar contra el backend).
+      POSTGRES_HOST_AUTH_METHOD: md5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      # Solo para tooling de host (tests, psql). La app sigue hablando con
+      # `pgbouncer`, nunca con este puerto — ver comentario del servicio pgbouncer.
+      - "15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-tamborito}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # Sección 31.1: PgBouncer es infraestructura transversal, no pertenece a
+  # ningún dominio Django. Django/Celery se conectan a PgBouncer, nunca
+  # directamente a `postgres`.
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # El entrypoint de esta imagen SOLO genera /etc/pgbouncer/pgbouncer.ini
+    # a partir de variables de entorno (POOL_MODE, AUTH_TYPE, etc.) cuando
+    # ese archivo no existe ya. Al montar nuestro propio pgbouncer.ini, la
+    # imagen lo usa tal cual y esas variables quedarían muertas — por eso ya
+    # no se declaran aquí; toda la configuración real vive en
+    # ./pgbouncer/pgbouncer.ini (ver los comentarios de ese archivo).
+    volumes:
+      - ./pgbouncer/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+      - ./pgbouncer/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    ports:
+      - "16432:6432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    # guest/guest es cómodo para `docker compose up` local; en producción no
+    # se puede llegar tan lejos sin fijar credenciales propias —
+    # `config.settings.production` revienta al arrancar si `CELERY_BROKER_URL`
+    # sigue conteniendo "guest:guest" (ver `common.settings_guards`).
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    ports:
+      - "15672:15672" # UI de administración
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000 --reload"
+    env_file:
+      - ../.env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.development
+    volumes:
+      - ..:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+  celery_worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: celery -A config worker -l info
+    env_file:
+      - ../.env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.development
+    volumes:
+      - ..:/app
+    depends_on:
+      - web
+      - rabbitmq
+      - redis
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
