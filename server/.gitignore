@@ -1,0 +1,22 @@
+# uv virtual environment — nunca se versiona; se recrea con `uv sync`.
+.venv/
+
+__pycache__/
+*.pyc
+
+# Django
+*.log
+staticfiles/
+media/
+db.sqlite3
+
+# Entorno local
+.env
+
+# Coverage / pytest
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Ruff cache
+.ruff_cache/
